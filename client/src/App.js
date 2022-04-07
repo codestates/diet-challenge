@@ -1,4 +1,3 @@
-
 import Main from "./pages/main";
 import Home from "./pages/home";
 import Signup from "./pages/signup";
@@ -6,9 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import "./App.css";
 
-
 function App() {
-
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
 
@@ -23,7 +20,10 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={isLogin ? <Home /> : <Main />} />
+        <Route
+          path="/"
+          element={isLogin ? <Home /> : <Main setIsLogin={setIsLogin} />}
+        />
         <Route path="/signup" element={<Signup />} />
       </Routes>
       <div>
@@ -38,7 +38,6 @@ function App() {
       </div>
     </div>
   );
-
 }
 
 export default App;
