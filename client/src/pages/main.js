@@ -10,9 +10,7 @@ function Main(){
           <header className="app-header">
             <div className="app-header-logo">
               <div className="logo">
-                <span className="logo-icon">
-                  <img src="https://assets.codepen.io/285131/almeria-logo.svg" />
-                </span>
+                
                 <h1 className="logo-title">
                   <span>diet-challenge</span>
                 </h1>
@@ -35,6 +33,9 @@ function Main(){
                 <a href="#">
                   mypage
                 </a>
+                <a href="#">
+                  log out
+                </a>
               </div>
             </div>
             <div className="app-header-actions">
@@ -55,16 +56,35 @@ function Main(){
           </header>
           <div className="app-body">
             <div className="app-body-navigation">
+              <div class="side-wrapper">
+              <div className="side-wrapper">
+        <div className="side-menu">
+          <div className="side-title">친구요청</div>
+          <div className="user">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" alt="" className="user-img" />
+            <div className="username">Inez Gibson</div>
+          </div>
+          <div className="user">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=046c29138c1335ef8edee7daf521ba50" alt="" className="user-img" />
+            <div className="username">Francis Wolfe</div>
+          </div>
+        </div></div>
+        <div></div>
+                  <div class="side-menu">
+                      <div class="side-title">
+                          친구목록
+                      </div>
+                      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=046c29138c1335ef8edee7daf521ba50" alt="" className="user-img" />
+                     
+                  <div class="username">
+                        francis wolf
+                  </div>
+                  </div>
+              </div>
               <nav className="navigation">
-                <a href="#">
-                  <i className="ph-browsers" />
-                  <span>친구요청</span>
-                </a>
-                <a href="#">
-                  <i className="ph-file-text" />
-                  <span>친구목록</span>
-                </a>
-              </nav>
+                
+                
+                </nav>
             </div>
             <div className="app-body-main-content">
               <section className="service-section">
@@ -141,22 +161,9 @@ function Main(){
                     <i className="ph-plus" />
                   </div>
                 </div>
-                <div className="transfers">
-                  <div className="transfer">
-                    <div className="transfer-logo">
-                    </div>
-                    <div>
-                      <dt />
-                      <dd />
-                    </div>
-                    <div>
-                      <dt />
-                      <dd />
-                    </div>
-                    <div>
-                      <dt />
-                      <dd />
-                    </div>
+                <div className="pictures">
+                  <div className="picture">
+                    
                     <div className="transfer-number">
                     </div>
                   </div>
