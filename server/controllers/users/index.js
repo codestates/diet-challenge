@@ -39,11 +39,9 @@ module.exports = {
 
   check: async (req, res) => {
     const { userId, userNickName } = req.body;
-
     const idCheck = await userModel.findOne({
       where: { userId },
     });
-
     const nickNameCheck = await userModel.findOne({
       where: { userNickName },
     });
