@@ -38,7 +38,7 @@ function Main({ setIsLogin }) {
           withCredentials: true,
         })
         .then((data) => {
-          setIsLogin();
+          setIsLogin(true);
           navigate("/");
         })
         .catch((err) => {
