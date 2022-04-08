@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +23,13 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isLogin ? <Home /> : <Main setIsLogin={setIsLogin} />}
+          element={
+            isLogin ? (
+              <Home />
+            ) : (
+              <Main setIsLogin={setIsLogin} setAccessToken={setAccessToken} />
+            )
+          }
         />
         <Route path="/signup" element={<Signup />} />
       </Routes>
