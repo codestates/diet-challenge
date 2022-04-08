@@ -20,7 +20,10 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={isLogin ? <Home /> : <Main />} />
+        <Route
+          path="/"
+          element={isLogin ? <Home /> : <Main setIsLogin={setIsLogin} />}
+        />
         <Route path="/signup" element={<Signup />} />
       </Routes>
       <div>
