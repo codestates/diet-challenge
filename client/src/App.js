@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   const testfunction = () => {
-    console.log(isLogin);
+    setIsLogin(!isLogin);
   };
 
   return (
