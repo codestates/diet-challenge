@@ -1,11 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const postController = require("../controllers/posts");
-const createController = require("../controllers/posts/create");
-const deleteController = require("../controllers/posts/delete");
+const router = require("express").Router();
+const multer = require("multer");
+const { imageFilter, storage } = require("./middleware");
+const controller = require("../controllers/posts");
 
-router.get("/", (req, res) => {});
-router.delete("/delete", (req, res) => {});
-router.post("/create", (req, res) => {});
+const upload = multer({ storage, fileFilter: imageFilter });
+
+//라우터
+router.get("/", controller.post);
+
+router.delete("/delete", controller.delete);
+
+router.post("/create", upload.single("image"), controller.create);
 
 module.exports = router;

@@ -1,11 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const acceptController = require("../controllers/friends/accept");
-const refuseController = require("../controllers/friends/refuse");
-const addController = require("../controllers/friends/add");
+const router = require("express").Router();
+// const {accept, refuse, add} = require("../controllers/friends");
 
-router.post("/accept", (req, res) => {});
-router.delete("/refuse", (req, res) => {});
-router.post("/add", (req, res) => {});
+// router.post("/accept", accept);
+// router.delete("/refuse", refuse);
+// router.post("/add", add);
 
 module.exports = router;

@@ -1,36 +1,27 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("friends", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
-        type: Sequelize.STRING,
-      },
-      userNickName: {
-        type: Sequelize.STRING,
-      },
-      userPassword: {
-        type: Sequelize.STRING,
-      },
-      nowGoal: {
-        type: Sequelize.STRING,
-      },
-      latestPostId: {
+      user_id: {
         type: Sequelize.INTEGER,
       },
-      authorization: {
+      fUser_id: {
+        type: Sequelize.INTEGER,
+      },
+      request: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false, //기본값 설정
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"), //그때 그때 찍히게 설정
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
@@ -40,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("friends");
   },
 };
