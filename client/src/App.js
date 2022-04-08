@@ -1,23 +1,48 @@
-import logo from "./logo.svg";
+import Main from "./pages/main";
+import Home from "./pages/home";
+import Signup from "./pages/signup";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, []);
+
+  const testfunction = () => {
+    console.log(isLogin);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          hello world
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isLogin ? (
+              <Home />
+            ) : (
+              <Main setIsLogin={setIsLogin} setAccessToken={setAccessToken} />
+            )
+          }
+        />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+      <div>
+        <button className="test" type="butten" onClick={testfunction}>
+          로그인
+        </button>
+        <Link to="/signup">
+          <button className="test" type="butten">
+            회원가입
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
