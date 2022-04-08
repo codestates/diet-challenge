@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Modal } from "../components/modal";
 
 axios.defaults.withCredentials = true;
 
@@ -14,6 +15,16 @@ function Signup() {
   });
   const [uniqueid, setuniqueid] = useState(false);
   const [uniquenickname, setuniquenickname] = useState(false);
+  const [alertmessage, setalertmessage] = useState("");
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const navigate = useNavigate();
 
@@ -23,7 +34,9 @@ function Signup() {
   const idCkeck = () => {
     //서버로 axios 요청
     if (userinfo.userid.length < 1) {
-      alert("id를 입력해주세요");
+      // alert("id를 입력해주세요");
+      setalertmessage("id를 입력해주세요");
+      openModal();
     } else {
       axios
         .post(
@@ -32,16 +45,20 @@ function Signup() {
           { "Content-Type": "application/json" }
         )
         .then(() => {
-          return setuniqueid(true);
+          setuniqueid(true);
+          setalertmessage("사용 가능한 id 입니다");
+          openModal();
         })
         .catch(() => {
-          alert("사용할 수 없는 아이디 입니다.");
+          setalertmessage("사용할 수 없는 id입니다");
+          openModal();
         });
     }
   };
   const nicknameCheck = () => {
     if (userinfo.usernickname.length < 1) {
-      alert("닉네임을 입력해주세요");
+      setalertmessage("닉네임을 입력해주세요");
+      openModal();
     } else {
       axios
         .post(
@@ -50,10 +67,13 @@ function Signup() {
           { "Content-Type": "application/json" }
         )
         .then(() => {
-          return setuniquenickname(true);
+          setuniquenickname(true);
+          setalertmessage("사용 가능한 닉네임 입니다.");
+          openModal();
         })
         .catch(() => {
-          alert("사용할 수 없는 닉네임 입니다.");
+          setalertmessage("사용할 수 없는 닉네임 입니다.");
+          openModal();
         });
     }
   };
@@ -62,15 +82,20 @@ function Signup() {
     console.log(uniqueid);
     console.log(uniquenickname);
     if (uniqueid === false) {
-      alert("id 중복검사를 해 주세요.");
+      setalertmessage("id 중복검사를 해 주세요.");
+      openModal();
     } else if (userinfo.password.length < 8) {
-      alert("비밀번호는 8자리 이상이어야 합니다.");
+      setalertmessage("비밀번호는 8자리 이상이어야 합니다.");
+      openModal();
     } else if (userinfo.password !== userinfo.passwordcheck) {
-      alert("비밀번호가 일치해야합니다.");
+      setalertmessage("비밀번호가 일치해야합니다.");
+      openModal();
     } else if (uniquenickname === false) {
-      alert("닉네임 중복검사를 해 주세요.");
+      setalertmessage("닉네임 중복검사를 해 주세요.");
+      openModal();
     } else if (userinfo.goal === "") {
-      alert("나의 목표를 입력해 주세요.");
+      setalertmessage("나의 목표를 입력해 주세요.");
+      openModal();
     } else {
       axios
         .post(
@@ -87,7 +112,8 @@ function Signup() {
           navigate("/");
         })
         .catch(() => {
-          alert("다시 시도해 주세요");
+          setalertmessage("다시 시도해 주세요");
+          openModal();
         });
     }
   };
@@ -96,6 +122,7 @@ function Signup() {
     <div>
       <center>
         <h1>회원가입</h1>
+
         <div>모든 항목은 필수입니다</div>
         <form className="singupbox" onSubmit={(e) => e.preventDefault()}>
           <div>
@@ -142,6 +169,9 @@ function Signup() {
           </button>
         </form>
       </center>
+      <Modal open={modalOpen} close={closeModal}>
+        {alertmessage}
+      </Modal>
     </div>
   );
 }
