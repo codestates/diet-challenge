@@ -22,7 +22,7 @@ function Main({ setIsLogin }) {
       alert("아이디와 비밀번호를 입력해주세요.");
     } else {
       axios
-        .post("https://localhost:4000/users/login", userinfo, {
+        .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
