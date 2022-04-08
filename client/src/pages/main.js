@@ -50,8 +50,11 @@ function Main({ setIsLogin, setAccessToken }) {
             </h1>
           </div>
         </div>
-        <div className="app-header-navigation"></div>
+        <div className="app-header-container"></div>
         <div className="app-header-actions">
+            <header className="block">
+                <ul className="header-menu">
+                   <li>
           <span>아이디</span>
           <input type="id" onChange={handleInputValue("userId")} />
           <span>비밀번호</span>
@@ -59,6 +62,10 @@ function Main({ setIsLogin, setAccessToken }) {
           <button type="butten" onClick={handleLogin}>
             로그인
           </button>
+                       
+                    </li> 
+                </ul>
+            </header>
           <Link to="/signup">
             <button type="butten">회원가입</button>
           </Link>
