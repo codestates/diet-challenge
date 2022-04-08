@@ -5,12 +5,22 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Modal } from "../components/modal";
 
 function Main({ setIsLogin, setAccessToken }) {
   const [userinfo, setuserinfo] = useState({
     userId: "",
     userPassword: "",
   });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [alertmessage, setalertmessage] = useState("");
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const navigate = useNavigate();
 
   const handleInputValue = (key) => (e) => {
@@ -20,7 +30,8 @@ function Main({ setIsLogin, setAccessToken }) {
   const handleLogin = () => {
     console.log(userinfo);
     if (userinfo.userId === "" || userinfo.userPassword === "") {
-      alert("아이디와 비밀번호를 입력해주세요.");
+      setalertmessage("아이디와 비밀번호를 입력해주세요.");
+      openModal();
     } else {
       axios
         .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
@@ -33,7 +44,8 @@ function Main({ setIsLogin, setAccessToken }) {
           navigate("/");
         })
         .catch((err) => {
-          alert("아이디와 비밀번호가 틀렸습니다.");
+          setalertmessage("아이디와 비밀번호가 틀렸습니다.");
+          openModal();
         });
     }
   };
@@ -324,6 +336,9 @@ function Main({ setIsLogin, setAccessToken }) {
             </div>
             <div className="payment-section-footer"></div>
           </section>
+          <Modal open={modalOpen} close={closeModal}>
+            {alertmessage}
+          </Modal>
         </div>
       </div>
     </div>
