@@ -7,7 +7,7 @@ module.exports = {
     const userInfo = await userModel.findOne({
       where: { userId, userPassword },
     });
-
+    console.log(req.body);
     if (!userInfo) {
       res
         .status(401)
@@ -18,6 +18,7 @@ module.exports = {
 
       res.status(200).send({ data: { accessToken }, message: "login success" });
     }
+    // res.status(200).send("hi");
   },
 
   signup: async (req, res) => {
