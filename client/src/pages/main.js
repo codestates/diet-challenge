@@ -19,8 +19,7 @@ function Main({ setIsLogin, setAccessToken }) {
 
   const handleLogin = () => {
     if (userinfo.userId === "" || userinfo.userPassword === "") {
-      alert("아이디와 비밀번호를 입
-      력해주세요.");
+      alert("아이디와 비밀번호를 입력해주세요.");
     } else {
       axios
         .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
