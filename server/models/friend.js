@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class user extends Model {
+  class friend extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,33 +9,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // user.hasOne(models.friend);
-      // user.hasMany(models.post);
+      // friend.hasOne(models.user);
     }
   }
-  user.init(
+  friend.init(
     {
-      //id 프로퍼티 추가
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      userId: DataTypes.STRING,
-      userNickName: DataTypes.STRING,
-      userPassword: DataTypes.STRING,
-      nowGoal: DataTypes.STRING,
-      latestPostId: DataTypes.INTEGER, //포린키
-      authorization: {
+      user_id: DataTypes.INTEGER,
+      fUser_id: DataTypes.INTEGER,
+      request: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false, //기본값 설정
+        defaultValue: false,
       },
     },
     {
       sequelize,
-      modelName: "user",
+      modelName: "friend",
     }
   );
-  return user;
+  return friend;
 };

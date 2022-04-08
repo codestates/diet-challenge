@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const controller = require("../controllers/mainpage");
 
 /* GET home page. */
@@ -7,8 +6,6 @@ const controller = require("../controllers/mainpage");
 //   res.render("index", { title: "Express" });
 // });
 
-router.get("/", (req, res) => {
-  res.status(201).send("Hello World");
-});
+router.get("/", controller);
 
 module.exports = router;
