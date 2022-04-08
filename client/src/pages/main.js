@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Main({ setIsLogin }) {
+function Main({ setIsLogin, setAccessToken }) {
   const [userinfo, setuserinfo] = useState({
     userId: "",
     userPassword: "",
@@ -27,6 +27,8 @@ function Main({ setIsLogin }) {
           withCredentials: true,
         })
         .then((data) => {
+          console.log(data.data);
+          setAccessToken(data.data.accesstoken);
           setIsLogin();
           navigate("/");
         })
