@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Main({ setIsLogin }) {
+function Main({ setIsLogin, setAccessToken }) {
   const [userinfo, setuserinfo] = useState({
     userId: "",
     userPassword: "",
@@ -23,11 +23,13 @@ function Main({ setIsLogin }) {
       력해주세요.");
     } else {
       axios
-        .post("https://localhost:4000/users/login", userinfo, {
+        .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
         .then((data) => {
+          console.log(data.data);
+          setAccessToken(data.data.accesstoken);
           setIsLogin();
           navigate("/");
         })

@@ -27,7 +27,7 @@ function Signup() {
     } else {
       axios
         .post(
-          "https://localhost:4000/users/check",
+          `${process.env.REACT_APP_API_URL}/users/check`,
           { userid: userinfo.userid },
           { "Content-Type": "application/json" }
         )
@@ -45,7 +45,7 @@ function Signup() {
     } else {
       axios
         .post(
-          "https://localhost:4000/users/check",
+          `${process.env.REACT_APP_API_URL}/users/check`,
           { nickname: userinfo.usernickname },
           { "Content-Type": "application/json" }
         )
@@ -74,7 +74,7 @@ function Signup() {
     } else {
       axios
         .post(
-          "https://localhost:4000/users/signup",
+          `${process.env.REACT_APP_API_URL}/users/signup`,
           {
             id: userinfo.userid,
             password: userinfo.password,
