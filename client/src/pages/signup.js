@@ -93,28 +93,31 @@ function Signup() {
   };
 
   return (
-    <div>
-      <center>
+    <div className="wrap">
+         <div>
         <h1>회원가입</h1>
         <div>모든 항목은 필수입니다</div>
         <form className="singupbox" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <span>id</span>
-            <input type="id" onChange={handleInputValue("userid")} />
+            <form id="newMember" action="" className="input-group"></form>
+            <input type="text" id="username" className="input-field" placeholder="아이디를 입력해주세요"  required onChange={handleInputValue("userid")}/>
             <button className="uniqueckeck" type="butten" onClick={idCkeck}>
               중복검사
             </button>
           </div>
-          <div>
-            <span>비밀번호</span>
-            <input type="password" onChange={handleInputValue("password")} />
+          <div>            
+            <input type="password" id="password" 
+            className="input-field" 
+            placeholder="비밀번호를 입력하세요" required 
+            onChange={handleInputValue("password")} />
           </div>
           <div>
-            <span>비밀번호 확인</span>
             <input
               type="password"
+              className="input-field"
+              placeholder="비밀번호를 입력하세요"
               onChange={handleInputValue("passwordcheck")}
-            />
+              />
           </div>
           <div>
             <span>닉네임</span>
@@ -123,7 +126,7 @@ function Signup() {
               className="uniqueckeck"
               type="butten"
               onClick={nicknameCheck}
-            >
+              >
               중복검사
             </button>
           </div>
@@ -132,17 +135,18 @@ function Signup() {
             <span>나의 목표</span>
             <input type="text" onChange={handleInputValue("goal")} />
           </div>
-
           <button
             className="btn btn-signup"
             type="submit"
             onClick={handleSignup}
-          >
-            회원가입
+            >
+            확인
           </button>
         </form>
-      </center>
+              </div>               
+    
     </div>
+    
   );
 }
 export default Signup;
