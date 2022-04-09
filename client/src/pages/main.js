@@ -5,13 +5,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+<<<<<<< HEAD
+=======
+import { Modal } from "../components/modal";
+import { useDispatch } from "react-redux";
+import { setLogin, setAccessToken } from "../actions/index";
+>>>>>>> 6d775279d9964831616023b0e6577471867d90dd
 
-function Main({ setIsLogin, setAccessToken }) {
+function Main() {
   const [userinfo, setuserinfo] = useState({
     userId: "",
     userPassword: "",
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
@@ -28,9 +35,14 @@ function Main({ setIsLogin, setAccessToken }) {
           withCredentials: true,
         })
         .then((data) => {
+<<<<<<< HEAD
           setAccessToken(data.data.data.accessToken);
           setIsLogin(true);
 
+=======
+          dispatch(setAccessToken(data.data.data.accessToken));
+          dispatch(setLogin());
+>>>>>>> 6d775279d9964831616023b0e6577471867d90dd
           navigate("/");
         })
         .catch((err) => {
