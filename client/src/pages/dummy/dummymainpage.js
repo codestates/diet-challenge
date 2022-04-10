@@ -7,12 +7,12 @@ export const dummy = {
   },
   latest: { img: "img", info: "info" },
   friends: [
-    { nickname: "kimcoding", requset: true },
-    { nickname: "parkhacker", requset: true },
-    { nickname: "jordan", requset: true },
-    { nickname: "messi", requset: true },
-    { nickname: "musk", requset: false },
-    { nickname: "ronaldo", requset: false },
+    { friendId: 1, nickname: "kimcoding", request: true },
+    { friendId: 2, nickname: "parkhacker", request: true },
+    { friendId: 3, nickname: "jordan", request: true },
+    { friendId: 4, nickname: "messi", request: true },
+    { friendId: 5, nickname: "musk", request: false },
+    { friendId: 6, nickname: "ronaldo", request: false },
   ],
   friendslatest: [],
 };

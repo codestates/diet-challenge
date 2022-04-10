@@ -4,7 +4,7 @@ import Signup from "./pages/signup";
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setAccessToken } from "./actions/index";
+import { setAccessToken, setLogin, test } from "./actions/index";
 import "./App.css";
 
 function App() {
@@ -20,8 +20,10 @@ function App() {
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const testreduxfunction = () => {
-    dispatch(setAccessToken("sdfsd"));
+    dispatch(setLogin());
     console.log(accessToken);
+    // dispatch(test());
+    // console.log(reduxtest);
   };
 
   return (
