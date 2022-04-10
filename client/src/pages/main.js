@@ -5,12 +5,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-<<<<<<< HEAD
-=======
 import { Modal } from "../components/modal";
 import { useDispatch } from "react-redux";
 import { setLogin, setAccessToken } from "../actions/index";
->>>>>>> 6d775279d9964831616023b0e6577471867d90dd
 
 function Main() {
   const [userinfo, setuserinfo] = useState({
@@ -35,14 +32,8 @@ function Main() {
           withCredentials: true,
         })
         .then((data) => {
-<<<<<<< HEAD
-          setAccessToken(data.data.data.accessToken);
-          setIsLogin(true);
-
-=======
           dispatch(setAccessToken(data.data.data.accessToken));
           dispatch(setLogin());
->>>>>>> 6d775279d9964831616023b0e6577471867d90dd
           navigate("/");
         })
         .catch((err) => {
@@ -51,7 +42,7 @@ function Main() {
     }
   };
   return (
-     <div className="video-app">
+     <div className="video-app"> 
           <div className="header">
           <div className="header-left">
             <div className="logo-title">
@@ -92,23 +83,23 @@ function Main() {
              </div>
             </div>
           </div>
+     
             <div className="wrapper">
                 <div className="app-body">
                     <div className="body-title">
-                       
+                       <div className="body-menu">
+                           <div id="top-banner" className="banner">
+                              <div className="banner-inner-wrapper">
+                                  <h2>다이어트 n년차! 이번엔 성공하자 <br />친구와 함께 기록을 공유하며 함께 성공해요</h2>
+                                  
+                                  <h1>Diet challenge</h1>
+                                  </div>  
+                           </div>
+                       </div>
                     </div>
                 </div>
                 </div>        
-            <div className="footer">
-              <div className="footer-row">
-                <div className="footer-links">
-                </div>
-              </div>
-              <div className="footer-row">
-              </div>
-            </div>
-          </div>
-          <div className="footer-last">
+            
           </div>
         </div>
       
