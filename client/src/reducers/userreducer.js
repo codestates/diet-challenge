@@ -1,5 +1,5 @@
 import { initialState } from "./initialState";
-import { TEST, SETLOGIN, SETACCESSTOKEN } from "../actions/index";
+import { TEST, SETLOGIN, SETACCESSTOKEN, SETMAINPAGE } from "../actions/index";
 
 const userreducer = (state = initialState, action) => {
   switch (action.type) {
@@ -13,6 +13,9 @@ const userreducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         accessToken: action.payload.accessToken,
       });
+
+    case SETMAINPAGE:
+      return Object.assign({}, state, action.payload.data);
 
     default:
       return state;

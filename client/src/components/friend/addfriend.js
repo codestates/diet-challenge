@@ -1,0 +1,58 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { Modal } from "../modal";
+
+export const Addfriend = () => {
+  const [nickname, setnickname] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [alertmessage, setalertmessage] = useState("");
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleInputValue = (e) => {
+    setnickname(e.target.value);
+  };
+  const handleRequest = () => {
+    console.log(nickname);
+    if (nickname === "") {
+      setalertmessage("닉네임을 입력해 주세요");
+      openModal();
+    } else {
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/friends/add`,
+          { friendNickname: nickname },
+          {
+            "Content-Type": "application/json",
+            withCredentials: true,
+          }
+        )
+        .then((data) => {
+          setalertmessage("친구 요청이 완료됐습니다.");
+          openModal();
+        })
+        .catch(() => {
+          setalertmessage("존재하지 않는 닉네임 입니다");
+          openModal();
+        });
+    }
+  };
+
+  return (
+    <div>
+      <span>닉네임</span>
+      <input type="text" onChange={handleInputValue} />
+      <button type="butten" onClick={handleRequest}>
+        친구요청
+      </button>
+      <Modal open={modalOpen} close={closeModal}>
+        {alertmessage}
+      </Modal>
+    </div>
+  );
+};
