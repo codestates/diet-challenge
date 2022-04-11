@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const Friends = () => {
   const allfriendlist = useSelector((state) => state.userreducer.friends);
+
   const friendlist = allfriendlist.filter((el) => {
     return el.request === true;
   });
