@@ -39,7 +39,9 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-
+.input-field{
+  text-align: center;
+}
 body {
   font-family: var(--body-font);
   font-size: 15px;
@@ -48,6 +50,88 @@ body {
   margin: 0;
   font-weight: 600;
   min-height: -webkit-fill-available;
+}
+.wrap {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background: linear-gradient(to right,#9cd8ec, #eff3f1);
+  position: absolute;
+}
+.form-wrap {
+  width: 400px;
+  height: 500px;
+  position: relative;
+  margin: 25% auto;
+  background: linear-gradient(to right,#f4f6f7, #ffff);
+  padding: 5px;
+  overflow: hidden;
+  align-items: center;
+}
+.button-wrap{
+  width:  230px;
+  margin: 35px auto;
+  margin-bottom: 0px;
+  position: relative;
+  border-radius: 30px;
+}
+#newMember{
+  padding-left: 50px;
+  padding-right: 20px;
+ justify-content: center;
+}
+.input-group{
+  top: 130px;
+  position: absolute;
+  width: 280px;
+  transition: .5s;
+}
+.input-field {
+  width: 90%;
+  height: 0%;
+  padding: 10px 0;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 1px solid ;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  margin-left: 5%;
+  color: rgb(19, 1, 1);
+}
+.member{
+  font-size: 30px;
+  color: rgb(19, 1, 1) 
+}
+.member1{
+  font-size: 15px;
+  color: rgb(19, 1, 1);
+}
+:placeholder{
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  font-size: 15px;
+  color: rgb(19,1,1);
+}
+.uniqueckeck{
+  font-size: 13px;
+  margin-left: 80%;
+}
+.submit{
+  width: 60%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin-top: 8%;
+  margin-left: 20%;
+  text-align: center;
+  background: linear-gradient(to right, #78d9fa,  #eff3f1);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  font-size: 20px;
 }
 .morph {
   border: 2px solid transparent;
@@ -117,6 +201,10 @@ body {
 .menu-item:not(:last-child) {
   margin-right: 20px;
 }
+.password{
+  text-align: center;
+}
+
 
 .user-settings {
   display: flex;
@@ -282,6 +370,12 @@ body {
   flex-shrink: 0;
 }
 h1{
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}
+h3{
   text-align: center;
 }
 .main-container {

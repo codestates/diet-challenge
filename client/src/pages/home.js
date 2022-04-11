@@ -4,7 +4,6 @@ import { Friends } from "../components/friend/index";
 import axios from "axios";
 import { setAccessToken, setLogin, setMainPage, test } from "../actions/index";
 import {Link, useNavigate } from 'react-router-dom'
-import { FriendList } from "../components/friend/list"
 
 function Home() {
   const dispatch = useDispatch();
