@@ -26,6 +26,10 @@
 img {
   max-width: 100%;
 }
+.video-app{
+  background: linear-gradient(to right, #78d9fa,  #effafd);
+
+}
 .logo-title{
   font-size: 30px;
   color: var(--logo-color)
@@ -54,17 +58,17 @@ body {
 .wrap {
   height: 100%;
   width: 100%;
-  background-position: center;
+  background-position: bottom;
   background-size: cover;
-  background: linear-gradient(to right,#9cd8ec, #eff3f1);
   position: absolute;
 }
 .form-wrap {
   width: 400px;
   height: 500px;
   position: relative;
-  margin: 25% auto;
-  background: linear-gradient(to right,#f4f6f7, #ffff);
+  margin: 15% auto;
+  margin-left: 15%;
+  background: rgb(255, 255, 255);
   padding: 5px;
   overflow: hidden;
   align-items: center;
