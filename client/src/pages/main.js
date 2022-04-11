@@ -5,13 +5,26 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Modal } from "../components/modal";
+import { useDispatch } from "react-redux";
+import { setLogin, setAccessToken } from "../actions/index";
 
-function Main({ setIsLogin, setAccessToken }) {
+function Main() {
   const [userinfo, setuserinfo] = useState({
     userId: "",
     userPassword: "",
   });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [alertmessage, setalertmessage] = useState("");
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
@@ -20,21 +33,22 @@ function Main({ setIsLogin, setAccessToken }) {
   const handleLogin = () => {
     console.log(userinfo);
     if (userinfo.userId === "" || userinfo.userPassword === "") {
-      alert("아이디와 비밀번호를 입력해주세요.");
+      setalertmessage("아이디와 비밀번호를 입력해주세요.");
+      openModal();
     } else {
       axios
-        .post("http://localhost:4000/users/login", userinfo, {
+        .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
         .then((data) => {
-          setAccessToken(data.data.data.accessToken);
-          setIsLogin(true);
-
+          dispatch(setAccessToken(data.data.data.accessToken));
+          dispatch(setLogin());
           navigate("/");
         })
         .catch((err) => {
-          alert("아이디와 비밀번호가 틀렸습니다.");
+          setalertmessage("아이디와 비밀번호가 틀렸습니다.");
+          openModal();
         });
     }
   };
@@ -325,6 +339,9 @@ function Main({ setIsLogin, setAccessToken }) {
             </div>
             <div className="payment-section-footer"></div>
           </section>
+          <Modal open={modalOpen} close={closeModal}>
+            {alertmessage}
+          </Modal>
         </div>
       </div>
     </div>

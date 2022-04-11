@@ -1,17 +1,11 @@
-export const initialState = {
-  isLogin: false,
-  accessToken: "",
+export const dummy = {
   userinfo: {
-    id: "",
-    userid: "",
-    password: "",
-    passwordcheck: "",
-    usernickname: "",
-    goal: "",
+    id: "1",
+    userid: "test",
+    usernickname: "hyeonmin",
+    goal: "하루에 4km걷기",
   },
-  latest: { goal: "", info: "", img: "" },
-  friendslatest: [],
-  test: 0,
+  latest: { img: "img", info: "info" },
   friends: [
     { friendId: 1, nickname: "kimcoding", request: true },
     { friendId: 2, nickname: "parkhacker", request: true },
@@ -20,4 +14,5 @@ export const initialState = {
     { friendId: 5, nickname: "musk", request: false },
     { friendId: 6, nickname: "ronaldo", request: false },
   ],
+  friendslatest: [],
 };

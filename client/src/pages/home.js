@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Friends } from "../components/friend/index";
+import axios from "axios";
+import { setMainPage, test } from "../actions/index";
 
 function Home() {
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.userreducer.accessToken);
+  const reduxtest = useSelector((state) => state.userreducer.test);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/mainpage`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+        { "Content-Type": "application/json", withCredentials: true }
+      )
+      .then((data) => {
+        dispatch(setMainPage(data.data.data));
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  }, []);
+
   return (
     <div className="app">
       <header className="app-header">
@@ -42,15 +69,19 @@ function Home() {
       <div className="app-body">
         <div className="app-body-navigation">
           <nav className="navigation">
-            <a href="#">
+            {/* <a href="#">
               <i className="ph-browsers" />
               <span>친구요청</span>
             </a>
             <a href="#">
               <i className="ph-file-text" />
               <span>친구목록</span>
-            </a>
+            </a> */}
+
+            <Friends />
           </nav>
+
+          {/* {위치표시} */}
         </div>
         <div className="app-body-main-content">
           <section className="service-section">
