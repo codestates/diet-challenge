@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
@@ -93,60 +93,130 @@ function Signup() {
   };
 
   return (
-    <div className="wrap">
-         <div>
-        <h1>회원가입</h1>
-        <div>모든 항목은 필수입니다</div>
-        <form className="singupbox" onSubmit={(e) => e.preventDefault()}>
-          <div>
-            <form id="newMember" action="" className="input-group"></form>
-            <input type="text" id="username" className="input-field" placeholder="아이디를 입력해주세요"  required onChange={handleInputValue("userid")}/>
-            <button className="uniqueckeck" type="butten" onClick={idCkeck}>
-              중복검사
-            </button>
+    <div className="video-app">
+      <div className="header">
+        <div className="header-left">
+          <div className="logo-title">Diet-challenge</div>
+        </div>
+        <div className="header-menu">
+          <Link to="/">
+          <div className="header-menu">Home</div>
+          </Link>
+        </div>
+      </div>
+      <div className="wrapper">
+        <div className="left-side">
+          <div className="side-wrapper"></div>
+          <div className="side-wrapper">
+            <div className="side-menu">
+              <div className="side-title">친구요청</div>
+            </div>
           </div>
-          <div>            
-            <input type="password" id="password" 
-            className="input-field" 
-            placeholder="비밀번호를 입력하세요" required 
-            onChange={handleInputValue("password")} />
+          <div className="side-wrapper">
+            <div className="side-menu">
+              <div className="side-title">친구목록</div>
+            </div>
           </div>
-          <div>
-            <input
-              type="password"
-              className="input-field"
-              placeholder="비밀번호를 입력하세요"
-              onChange={handleInputValue("passwordcheck")}
-              />
+        </div>
+        <div className="wrapper">
+          <div className="app-body">
+            <div className="body-title">
+              <div className="body-menu">
+                <div id="top-banner" className="banner">
+                  <div className="banner-inner-wrapper">
+                    <h2>
+                      다이어트 n년차! 이번엔 성공하자 <br />
+                      친구와 함께 기록을 공유하며 함께 성공해요
+                    </h2>
+                    <h1>Diet challenge</h1>
+                    <div className="wrap">
+                      <div>
+                        <h1>회원가입</h1>
+                        <div>모든 항목은 필수입니다</div>
+                        <form
+                          className="singupbox"
+                          onSubmit={(e) => e.preventDefault()}
+                        >
+                          <div>
+                            <form
+                              id="newMember"
+                              action=""
+                              className="input-group"
+                            ></form>
+                            <input
+                              type="text"
+                              id="username"
+                              className="input-field"
+                              placeholder="아이디를 입력해주세요"
+                              required
+                              onChange={handleInputValue("userid")}
+                            />
+                            <button
+                              className="uniqueckeck"
+                              type="butten"
+                              onClick={idCkeck}
+                            >
+                              중복검사
+                            </button>
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              id="password"
+                              className="input-field"
+                              placeholder="비밀번호를 입력하세요"
+                              required
+                              onChange={handleInputValue("password")}
+                            />
+                          </div>
+                          <div>
+                            <input
+                              type="password"
+                              className="input-field"
+                              placeholder="비밀번호를 입력하세요"
+                              onChange={handleInputValue("passwordcheck")}
+                            />
+                          </div>
+                          <div>
+                            <span>닉네임</span>
+                            <input
+                              type="text"
+                              onChange={handleInputValue("usernickname")}
+                            />
+                            <button
+                              className="uniqueckeck"
+                              type="butten"
+                              onClick={nicknameCheck}
+                            >
+                              중복검사
+                            </button>
+                          </div>
+                          <div>
+                            {" "}
+                            <span>나의 목표</span>
+                            <input
+                              type="text"
+                              onChange={handleInputValue("goal")}
+                            />
+                          </div>
+                          <button
+                            className="btn btn-signup"
+                            type="submit"
+                            onClick={handleSignup}
+                          >
+                            확인
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <span>닉네임</span>
-            <input type="text" onChange={handleInputValue("usernickname")} />
-            <button
-              className="uniqueckeck"
-              type="butten"
-              onClick={nicknameCheck}
-              >
-              중복검사
-            </button>
-          </div>
-          <div>
-            {" "}
-            <span>나의 목표</span>
-            <input type="text" onChange={handleInputValue("goal")} />
-          </div>
-          <button
-            className="btn btn-signup"
-            type="submit"
-            onClick={handleSignup}
-            >
-            확인
-          </button>
-        </form>
-              </div>               
-    
+        </div>
+      </div>
     </div>
-    
   );
 }
 export default Signup;

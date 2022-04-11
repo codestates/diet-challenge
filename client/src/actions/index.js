@@ -1,6 +1,7 @@
 export const TEST = "TEST";
 export const SETLOGIN = "SETLOGIN";
 export const SETACCESSTOKEN = "SETACCESSTOKEN";
+export const SETMAINPAGE = "SETMAINPAGE";
 
 export const test = () => {
   return {
@@ -19,6 +20,14 @@ export const setAccessToken = (accessToken) => {
     type: SETACCESSTOKEN,
     payload: {
       accessToken: accessToken,
+    },
+  };
+};
+export const setMainPage = (data) => {
+  return {
+    type: SETMAINPAGE,
+    payload: {
+      data,
     },
   };
 };
