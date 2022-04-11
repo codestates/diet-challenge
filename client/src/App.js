@@ -1,6 +1,7 @@
 import Main from "./pages/main";
 import Home from "./pages/home";
 import Signup from "./pages/signup";
+import Mypage from "./pages/mypage";
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={login ? <Home /> : <Main />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/mypage" element={<Mypage />} />
       </Routes>
       <div>
         <Link to="/signup">

@@ -46,6 +46,7 @@ export const Requst = ({ name, id }) => {
         </button>
         <button class="btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>
+          <div></div>
           요청 거절
         </button>
       </div>
