@@ -5,20 +5,20 @@ module.exports = {
   generateAccessToken: (data) => {
     return sign(data, process.env.ACCESS_SECRET, { expiresIn: "1d" });
   },
-  generateRefreshToken: (data) => {
-    return sign(data, process.env.REFRESH_SECRET, { expiresIn: "30d" });
-  },
-  sendRefreshToken: (res, refreshToken) => {
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-    });
-  },
-  sendAccessToken: (res, accessToken) => {
-    res.json({ data: { accessToken }, message: "ok" });
-  },
-  resendAccessToken: (res, accessToken, data) => {
-    res.json({ data: { accessToken, userInfo: data }, message: "ok" });
-  },
+  // generateRefreshToken: (data) => {
+  //   return sign(data, process.env.REFRESH_SECRET, { expiresIn: "30d" });
+  // },
+  // sendRefreshToken: (res, refreshToken) => {
+  //   res.cookie("refreshToken", refreshToken, {
+  //     httpOnly: true,
+  //   });
+  // },
+  // sendAccessToken: (res, accessToken) => {
+  //   res.status(200).json({ data: { accessToken }, message: "ok" });
+  // },
+  // resendAccessToken: (res, accessToken, data) => {
+  //   res.json({ data: { accessToken, userInfo: data }, message: "ok" });
+  // },
   isAuthorized: (req) => {
     const authorization = req.headers["authorization"];
     if (!authorization) {
@@ -32,12 +32,12 @@ module.exports = {
       return null;
     }
   },
-  checkRefeshToken: (refreshToken) => {
-    try {
-      return verify(refreshToken, process.env.REFRESH_SECRET);
-    } catch (err) {
-      // return null if refresh token is not valid
-      return null;
-    }
-  },
+  // checkRefeshToken: (refreshToken) => {
+  //   try {
+  //     return verify(refreshToken, process.env.REFRESH_SECRET);
+  //   } catch (err) {
+  //     // return null if refresh token is not valid
+  //     return null;
+  //   }
+  // },
 };

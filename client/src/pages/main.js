@@ -18,18 +18,19 @@ function Main({ setIsLogin, setAccessToken }) {
   };
 
   const handleLogin = () => {
+    console.log(userinfo);
     if (userinfo.userId === "" || userinfo.userPassword === "") {
       alert("아이디와 비밀번호를 입력해주세요.");
     } else {
       axios
-        .post(`http://localhost:4000/users/login`, userinfo, {
+        .post("http://localhost:4000/users/login", userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
         .then((data) => {
-          console.log(data.data);
-          setAccessToken(data.data.accesstoken);
-          setIsLogin();
+          setAccessToken(data.data.data.accessToken);
+          setIsLogin(true);
+
           navigate("/");
         })
         .catch((err) => {
