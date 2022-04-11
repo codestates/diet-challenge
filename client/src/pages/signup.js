@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Modal } from "../components/modal";
 
 axios.defaults.withCredentials = true;
 
@@ -15,16 +14,6 @@ function Signup() {
   });
   const [uniqueid, setuniqueid] = useState(false);
   const [uniquenickname, setuniquenickname] = useState(false);
-  const [alertmessage, setalertmessage] = useState("");
-
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   const navigate = useNavigate();
 
@@ -34,9 +23,7 @@ function Signup() {
   const idCkeck = () => {
     //서버로 axios 요청
     if (userinfo.userid.length < 1) {
-      // alert("id를 입력해주세요");
-      setalertmessage("id를 입력해주세요");
-      openModal();
+      alert("id를 입력해주세요");
     } else {
       axios
         .post(
@@ -45,20 +32,16 @@ function Signup() {
           { "Content-Type": "application/json" }
         )
         .then(() => {
-          setuniqueid(true);
-          setalertmessage("사용 가능한 id 입니다");
-          openModal();
+          return setuniqueid(true);
         })
         .catch(() => {
-          setalertmessage("사용할 수 없는 id입니다");
-          openModal();
+          alert("사용할 수 없는 아이디 입니다.");
         });
     }
   };
   const nicknameCheck = () => {
     if (userinfo.usernickname.length < 1) {
-      setalertmessage("닉네임을 입력해주세요");
-      openModal();
+      alert("닉네임을 입력해주세요");
     } else {
       axios
         .post(
@@ -67,13 +50,10 @@ function Signup() {
           { "Content-Type": "application/json" }
         )
         .then(() => {
-          setuniquenickname(true);
-          setalertmessage("사용 가능한 닉네임 입니다.");
-          openModal();
+          return setuniquenickname(true);
         })
         .catch(() => {
-          setalertmessage("사용할 수 없는 닉네임 입니다.");
-          openModal();
+          alert("사용할 수 없는 닉네임 입니다.");
         });
     }
   };
@@ -82,20 +62,15 @@ function Signup() {
     console.log(uniqueid);
     console.log(uniquenickname);
     if (uniqueid === false) {
-      setalertmessage("id 중복검사를 해 주세요.");
-      openModal();
+      alert("id 중복검사를 해 주세요.");
     } else if (userinfo.password.length < 8) {
-      setalertmessage("비밀번호는 8자리 이상이어야 합니다.");
-      openModal();
+      alert("비밀번호는 8자리 이상이어야 합니다.");
     } else if (userinfo.password !== userinfo.passwordcheck) {
-      setalertmessage("비밀번호가 일치해야합니다.");
-      openModal();
+      alert("비밀번호가 일치해야합니다.");
     } else if (uniquenickname === false) {
-      setalertmessage("닉네임 중복검사를 해 주세요.");
-      openModal();
+      alert("닉네임 중복검사를 해 주세요.");
     } else if (userinfo.goal === "") {
-      setalertmessage("나의 목표를 입력해 주세요.");
-      openModal();
+      alert("나의 목표를 입력해 주세요.");
     } else {
       axios
         .post(
@@ -112,66 +87,111 @@ function Signup() {
           navigate("/");
         })
         .catch(() => {
-          setalertmessage("다시 시도해 주세요");
-          openModal();
+          alert("다시 시도해 주세요");
         });
     }
   };
 
   return (
-    <div>
-      <center>
-        <h1>회원가입</h1>
-
-        <div>모든 항목은 필수입니다</div>
-        <form className="singupbox" onSubmit={(e) => e.preventDefault()}>
-          <div>
-            <span>id</span>
-            <input type="id" onChange={handleInputValue("userid")} />
-            <button className="uniqueckeck" type="butten" onClick={idCkeck}>
-              중복검사
-            </button>
+    <div className="video-app">
+      <div className="header">
+        <div className="header-left">
+          <div className="logo-title">Diet-challenge</div>
+        </div>
+        <div className="header-menu">
+          <Link to="/">
+            <div className="header-menu">Home</div>
+          </Link>
+        </div>
+      </div>
+      <div className="wrapper">
+        <div id="top-banner" className="banner">
+          <div className="banner-inner-wrapper">
+            <h2>
+              다이어트 n년차! 이번엔 성공하자 <br />
+              친구와 함께 기록을 공유하며 함께 성공해요
+            </h2>
+            <h1>Diet challenge</h1>
+            <div className="wrap">
+              <div>
+                <h1>회원가입</h1>
+                <div>모든 항목은 필수입니다</div>
+                <form
+                  className="singupbox"
+                  onSubmit={(e) => e.preventDefault()}
+                >
+                  <div>
+                    <form
+                      id="newMember"
+                      action=""
+                      className="input-group"
+                    ></form>
+                    <input
+                      type="text"
+                      id="username"
+                      className="input-field"
+                      placeholder="아이디를 입력해주세요"
+                      required
+                      onChange={handleInputValue("userid")}
+                    />
+                    <button
+                      className="uniqueckeck"
+                      type="butten"
+                      onClick={idCkeck}
+                    >
+                      중복검사
+                    </button>
+                  </div>
+                  <div>
+                    <input
+                      type="password"
+                      id="password"
+                      className="input-field"
+                      placeholder="비밀번호를 입력하세요"
+                      required
+                      onChange={handleInputValue("password")}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="password"
+                      className="input-field"
+                      placeholder="비밀번호를 입력하세요"
+                      onChange={handleInputValue("passwordcheck")}
+                    />
+                  </div>
+                  <div>
+                    <span>닉네임</span>
+                    <input
+                      type="text"
+                      onChange={handleInputValue("usernickname")}
+                    />
+                    <button
+                      className="uniqueckeck"
+                      type="butten"
+                      onClick={nicknameCheck}
+                    >
+                      중복검사
+                    </button>
+                  </div>
+                  <div>
+                    {" "}
+                    <span>나의 목표</span>
+                    <input type="text" onChange={handleInputValue("goal")} />
+                  </div>
+                  <button
+                    className="btn btn-signup"
+                    type="submit"
+                    onClick={handleSignup}
+                  >
+                    확인
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
-          <div>
-            <span>비밀번호</span>
-            <input type="password" onChange={handleInputValue("password")} />
-          </div>
-          <div>
-            <span>비밀번호 확인</span>
-            <input
-              type="password"
-              onChange={handleInputValue("passwordcheck")}
-            />
-          </div>
-          <div>
-            <span>닉네임</span>
-            <input type="text" onChange={handleInputValue("usernickname")} />
-            <button
-              className="uniqueckeck"
-              type="butten"
-              onClick={nicknameCheck}
-            >
-              중복검사
-            </button>
-          </div>
-          <div>
-            {" "}
-            <span>나의 목표</span>
-            <input type="text" onChange={handleInputValue("goal")} />
-          </div>
-
-          <button
-            className="btn btn-signup"
-            type="submit"
-            onClick={handleSignup}
-          >
-            회원가입
-          </button>
-        </form>
-      </center>
-      <Modal open={modalOpen} close={closeModal}>
-        {alertmessage}
-      </Modal>
+        </div>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const CreatePost = () => {
   const [imageSrc, setImageSrc] = useState("");
+  const [imgInfo, setImgInfo] = useState("");
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -11,6 +12,10 @@ const CreatePost = () => {
         resolve();
       };
     });
+  };
+
+  const newpost = (e) => {
+    setImgInfo(e.target.value);
   };
   return (
     <main className="container">
@@ -26,6 +31,8 @@ const CreatePost = () => {
         {" "}
         {imageSrc && <img src={imageSrc} alt="preview-img" />}{" "}
       </div>{" "}
+      <input type="textarea" onChange={newpost} />
+      <button>글 작성하기</button>
     </main>
   );
 };
