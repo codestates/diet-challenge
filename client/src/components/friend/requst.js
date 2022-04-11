@@ -19,7 +19,7 @@ export const Requst = ({ name, id }) => {
   };
   const handleaccept = () => {
     axios
-      .delete(
+      .post(
         `${process.env.REACT_APP_API_URL}/friends/accept`,
         { friendId: id },
         {
