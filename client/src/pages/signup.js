@@ -153,7 +153,7 @@ function Signup() {
         </div>
         <div>
           <input
-            type="password1"
+            type="password"
             id="password"
             className="input-field"
             placeholder="비밀번호를 입력하세요"
@@ -163,7 +163,7 @@ function Signup() {
         </div>
         <div>
           <input
-            type="password1"
+            type="password"
             className="input-field"
             placeholder="비밀번호를 입력하세요"
             onChange={handleInputValue("passwordcheck")}
