@@ -46,8 +46,10 @@ export const Addfriend = () => {
   return (
     <div>
       <span>닉네임</span>
-      <input type="text" onChange={handleInputValue} />
-      <button type="butten" onClick={handleRequest}>
+      <input class="btn morph active"type="text" onChange={handleInputValue} />
+      <i class="fas fa-search"></i>
+      <button type="butten" class="btn morph" onClick={handleRequest}>
+      <i class="fas fa-user-plus"></i>
         친구요청
       </button>
       <Modal open={modalOpen} close={closeModal}>

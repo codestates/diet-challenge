@@ -18,12 +18,12 @@ export const Friends = () => {
       <div className="side-wrpper">
         <div className="side-title2">친구추가</div>
         <Addfriend />
-
-        <div className="side-title">친구요청</div>
+        <div className="side-title"></div>
         {requestfriend.map((el) => {
           return <Requst name={el.nickname} id={el.friendId} />;
         })}
       </div>
+
       <div className="side-title1">친구목록</div>
       {friendlist.map((el) => {
         return <FriendList name={el.nickname} id={el.friendId} />;
