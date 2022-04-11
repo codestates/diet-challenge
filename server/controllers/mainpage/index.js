@@ -3,5 +3,5 @@
 const { user, post } = require("../../models");
 
 module.exports = (req, res) => {
-  res.send("hello world");
+  res.send("diet challenge server");
 };
