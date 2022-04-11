@@ -1,5 +1,6 @@
 const { user: userModel } = require("../../models");
-const { generateAccessToken, sendAccessToken } = require("../tokenFunctions");
+const { Op } = require("sequelize");
+const { generateAccessToken, isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
   login: async (req, res) => {
@@ -59,7 +60,33 @@ module.exports = {
     }
   },
 
-  withdrawal: (req, res) => {},
+  withdrawal: async (req, res) => {
+    const userInfo = isAuthorized(req);
+    if (!userInfo)
+      return res.status(400).json({
+        data: null,
+        message: "invalid access token",
+      });
+
+    const delId = userInfo.id;
+
+    Promise.all([
+      postModel.destroy({ where: { user_id: delId } }),
+      friendModel.destroy({
+        where: {
+          [Op.or]: [{ user_id: delId }, { fUser_id: delId }],
+        },
+      }),
+      userModel.destroy({
+        where: { id: delId },
+      }),
+    ])
+      .then(() => res.status(200).json({ data: null, message: "ok" }))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ data: null, message: "fail" });
+      });
+  },
 
   check: async (req, res) => {
     const { userId, userNickName } = req.body;
