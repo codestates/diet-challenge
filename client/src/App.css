@@ -26,11 +26,14 @@
 img {
   max-width: 100%;
 }
-.logo-title{
-  font-size: 30px;
-  color: var(--logo-color)
+.video-app {
+  background: linear-gradient(to right, #d2f0fa, #effafd);
 }
-.side-title{
+.logo-title {
+  font-size: 30px;
+  color: var(--logo-color);
+}
+.side-title {
   text-align: center;
   color: var(--logo-color);
   font-size: x-large;
@@ -39,7 +42,9 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-
+.input-field {
+  text-align: center;
+}
 body {
   font-family: var(--body-font);
   font-size: 15px;
@@ -49,15 +54,103 @@ body {
   font-weight: 600;
   min-height: -webkit-fill-available;
 }
+.wrap {
+  height: 100%;
+  width: 100%;
+  background-position: bottom;
+  background-size: cover;
+  position: absolute;
+}
+.form-wrap {
+  width: 400px;
+  height: 500px;
+  position: relative;
+  margin: 15% auto;
+  margin-left: 15%;
+  background: rgb(255, 255, 255);
+  padding: 5px;
+  overflow: hidden;
+  align-items: center;
+}
+.button-wrap {
+  width: 230px;
+  margin: 35px auto;
+  margin-bottom: 0px;
+  position: relative;
+  border-radius: 30px;
+}
+#newMember {
+  padding-left: 50px;
+  padding-right: 20px;
+  justify-content: center;
+}
+.input-group {
+  top: 130px;
+  position: absolute;
+  width: 280px;
+  transition: 0.5s;
+}
+.input-field {
+  width: 90%;
+  height: 0%;
+  padding: 10px 0;
+  margin-top: 3%;
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  margin-left: 5%;
+  color: rgb(19, 1, 1);
+}
+.member {
+  font-size: 30px;
+  color: rgb(19, 1, 1);
+}
+.member1 {
+  font-size: 15px;
+  color: rgb(19, 1, 1);
+}
+:placeholder {
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  font-size: 15px;
+  color: rgb(19, 1, 1);
+}
+.uniqueckeck {
+  font-size: 13px;
+  margin-left: 80%;
+}
+.submit {
+  width: 60%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin-top: 8%;
+  margin-left: 20%;
+  text-align: center;
+  background: linear-gradient(to right, #78d9fa, #eff3f1);
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  font-size: 20px;
+}
 .morph {
   border: 2px solid transparent;
   background: linear-gradient(160deg, #f0f1f4 0%, #e4e6eb 100%);
-  box-shadow: -3px -3px 6px 2px #ffffff, 5px 5px 8px 0px rgba(0, 0, 0, 0.17), 1px 2px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: -3px -3px 6px 2px #ffffff, 5px 5px 8px 0px rgba(0, 0, 0, 0.17),
+    1px 2px 2px 0px rgba(0, 0, 0, 0.1);
   transition: 0.1s;
 }
-.morph.active, .morph:active, .morph:focus {
+.morph.active,
+.morph:active,
+.morph:focus {
   border: 2px solid #fafafa;
-  box-shadow: inset -3px -3px 5px 0px #ffffff, -1px -1px 4px 0px #ffffff, inset 5px 5px 10px 0px rgba(0, 0, 0, 0.12), inset 2px 2px 3px 0px rgba(0, 0, 0, 0.07), 1px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -3px -3px 5px 0px #ffffff, -1px -1px 4px 0px #ffffff,
+    inset 5px 5px 10px 0px rgba(0, 0, 0, 0.12),
+    inset 2px 2px 3px 0px rgba(0, 0, 0, 0.07),
+    1px 2px 3px 0px rgba(0, 0, 0, 0.1);
 }
 .video-app {
   display: flex;
@@ -67,7 +160,7 @@ body {
   margin: 0 auto;
   overflow: hidden;
 }
-.btn {  
+.btn {
   height: 30px;
   border-radius: 2rem;
   text-align: center;
@@ -108,7 +201,7 @@ body {
   cursor: pointer;
   margin-left: auto;
   height: 100;
-  padding:0 20px 0 0
+  padding: 0 20px 0 0;
 }
 
 .menu-item:hover {
@@ -116,6 +209,9 @@ body {
 }
 .menu-item:not(:last-child) {
   margin-right: 20px;
+}
+.password {
+  text-align: center;
 }
 
 .user-settings {
@@ -152,7 +248,6 @@ body {
   fill: var(--body-color);
 }
 
-
 .search-bar {
   height: 90px;
   position: relative;
@@ -173,7 +268,7 @@ body {
 .search-bar input::placeholder {
   color: var(--body-color);
 }
-.username1{
+.username1 {
   font-size: 18px;
 }
 .user-profile {
@@ -281,7 +376,13 @@ body {
   overflow: auto;
   flex-shrink: 0;
 }
-h1{
+h1 {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}
+h3 {
   text-align: center;
 }
 .main-container {
@@ -350,7 +451,8 @@ h1{
   padding: 20px;
   transition: 0.2s;
 }
-.profile-menu-link.active, .profile-menu-link:hover {
+.profile-menu-link.active,
+.profile-menu-link:hover {
   border-bottom: 3px solid var(--logo-color);
   color: var(--logo-color);
 }
@@ -662,7 +764,8 @@ h1{
     padding: 6px;
   }
 
-  .profile-item, .profile-avatar {
+  .profile-item,
+  .profile-avatar {
     flex-direction: column;
   }
 

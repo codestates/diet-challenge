@@ -3,10 +3,10 @@ const env = process.env;
 
 module.exports = {
   development: {
-    username: "root",
+    username: env.DATABASE_USERNAME,
     password: env.DATABASE_PASSWORD,
-    database: "diet_challenge",
-    host: "127.0.0.1",
+    database: env.DATABASE_NAME,
+    host: env.DATABASE_HOST,
     dialect: "mysql",
   },
   test: {
