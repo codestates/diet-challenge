@@ -4,10 +4,15 @@ import MainPost from "./mainpost";
 
 function Body() {
   return (
-    <div>
-      <MainPost />
+    <div className="container">
+
+
+      
+  
+        <MainPost />
       <FriendPost />
     </div>
+ 
   );
 }
 export default Body;
