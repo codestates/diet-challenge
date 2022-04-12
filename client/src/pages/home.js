@@ -10,12 +10,16 @@ import Mypage from "../pages/mypage";
 import CreatePost from "../components/mypost";
 import MyPosts from "../components/myposts";
 
+axios.defaults.withCredentials = true;
+
 function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const accessToken = useSelector((state) => state.userreducer.accessToken);
   const reduxtest = useSelector((state) => state.userreducer.test);
+  const initialState = useSelector((state) => state.userreducer);
+  const img = useSelector((state) => state.userreducer.img);
 
   useEffect(() => {
     axios
@@ -34,12 +38,16 @@ function Home() {
       .catch(() => {
         console.log("error");
       });
-  }, []);
+  }, [initialState]);
 
   const Logout = () => {
     dispatch(setLogin());
     dispatch(setAccessToken(""));
     navigate("/");
+  };
+
+  const testfunction = () => {
+    console.log(img);
   };
 
   return (
@@ -98,6 +106,8 @@ function Home() {
                     </h2>
                     <h1>Diet challenge</h1>
                     See what's my activity
+                    {img && <img src={img} alt="preview-img" />}{" "}
+                    <button onClick={testfunction}>테스트</button>
                   </div>
 
                   <Routes>
