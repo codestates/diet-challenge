@@ -8,7 +8,6 @@ import { FriendList } from "../components/friend/list";
 import Body from "../components/body";
 import Mypage from "../pages/mypage";
 import CreatePost from "../components/mypost";
-import MyPosts from "../components/myposts";
 
 function Home() {
   const dispatch = useDispatch();
@@ -86,33 +85,32 @@ function Home() {
           </div>
         </div>
 
-        <div className="wrapper">
-          <div className="app-body">
-            <div className="body-title">
+        <div className="wrap">
+          <div className="body">
               <div className="body-menu">
                 <div id="top-banner" className="banner">
-                  <div className="banner-inner-wrapper">
-                    <h2>
+                    <h2 className="main-header">
                       다이어트 n년차! 이번엔 성공하자 <br />
                       친구와 함께 기록을 공유하며 함께 성공해요
                     </h2>
-                    <h1>Diet challenge</h1>
-                    See what's my activity
+                    <h1 className="main-header1">Diet challenge</h1>
+                    <p className="main-header2">
+                      See what's my activity
+                      </p>
                   </div>
 
                   <Routes>
                     <Route path="/" element={<Body />} />
                     <Route path="/createpost" element={<CreatePost />} />
                     <Route path="/mypage" element={<Mypage />} />
-                    <Route path="/mypost" element={<MyPosts />} />
                   </Routes>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+   
+
   );
 }
 export default Home;

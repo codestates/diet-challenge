@@ -95,23 +95,23 @@ function Main() {
         </div>
 
         <div className="wrapper">
-          <div className="app-body">
+        
             <div className="body-title">
               <div className="body-menu">
                 <div id="top-banner" className="banner">
                   <div className="banner-inner-wrapper">
-                    <h2>
+                    <h2 className="main-header">
                       다이어트 n년차! 이번엔 성공하자 <br />
                       친구와 함께 기록을 공유하며 함께 성공해요
                     </h2>
-                    <h1>Diet challenge</h1>
+                    <h1 className="main-header">Diet challenge</h1>
                     See what's my activity
                   </div>
+                  
                   <Routes>
                     <Route path="/" element={<div>hi</div>} />
                     <Route path="/signup" element={<Signup />} />
                   </Routes>
-
                   <div className="load-more">
                     <svg
                       id="me"
@@ -122,7 +122,8 @@ function Main() {
                       <path d="M341.227 149.333V0l-50.133 50.133C260.267 19.2 217.707 0 170.56 0 76.267 0 .107 76.373.107 170.667s76.16 170.667 170.453 170.667c79.467 0 146.027-54.4 164.907-128h-44.373c-17.6 49.707-64.747 85.333-120.533 85.333-70.72 0-128-57.28-128-128s57.28-128 128-128c35.307 0 66.987 14.72 90.133 37.867l-68.8 68.8h149.333z" />
                     </svg>
                     Load More
-                  </div>
+                  
+                  
                 </div>
               </div>
             </div>

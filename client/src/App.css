@@ -17,6 +17,12 @@
   --main-color: #fefffd;
   --body-color: #dddee0;
 }
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   outline: none;
@@ -56,11 +62,12 @@ body {
 }
 .wrap {
   height: 100%;
-  width: 100%;
+  width: 80%;
   background-position: bottom;
   background-size: cover;
-  position: absolute;
+
 }
+
 .form-wrap {
   width: 400px;
   height: 500px;
@@ -107,10 +114,32 @@ body {
   font-size: 30px;
   color: rgb(19, 1, 1);
 }
+
 .member1 {
   font-size: 15px;
   color: rgb(19, 1, 1);
 }
+.main-header{
+  font-size: 20px;
+  font-family: 'yg-jalnan';
+  text-align: center; 
+  color: var(--logo-color)
+  
+}
+.main-header1{
+  font-size: 30px;
+  font-family: 'yg-jalnan';
+  margin-left: 2%;
+  text-align: center; 
+  color:var(--logo-color)
+}
+.main-header2{
+  font-size: 20px;
+  margin-left: 2%;
+  text-align: left; 
+  color: rgb(19, 1, 1)
+}
+
 :placeholder {
   text-align: center;
   width: 80%;
@@ -136,6 +165,7 @@ body {
   border-radius: 30px;
   font-size: 20px;
 }
+
 .morph {
   border: 2px solid transparent;
   background: linear-gradient(160deg, #f0f1f4 0%, #e4e6eb 100%);
