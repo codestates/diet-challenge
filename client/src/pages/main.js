@@ -3,17 +3,27 @@
 // 웹 사이트에 대한 설명 추가
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { Modal } from "../components/modal";
 import { useDispatch } from "react-redux";
 import { setLogin, setAccessToken } from "../actions/index";
+import Signup from "./signup";
 
 function Main() {
   const [userinfo, setuserinfo] = useState({
     userId: "",
     userPassword: "",
   });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [alertmessage, setalertmessage] = useState("");
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,10 +34,11 @@ function Main() {
   const handleLogin = () => {
     console.log(userinfo);
     if (userinfo.userId === "" || userinfo.userPassword === "") {
-      alert("아이디와 비밀번호를 입력해주세요.");
+      setalertmessage("아이디와 비밀번호를 입력해주세요.");
+      openModal();
     } else {
       axios
-        .post("http://localhost:4000/users/login", userinfo, {
+        .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
@@ -37,7 +48,8 @@ function Main() {
           navigate("/");
         })
         .catch((err) => {
-          alert("아이디와 비밀번호가 틀렸습니다.");
+          setalertmessage("아이디와 비밀번호가 틀렸습니다.");
+          openModal();
         });
     }
   };
@@ -48,6 +60,9 @@ function Main() {
           <div className="logo-title">Diet-challenge</div>
         </div>
         <div className="header-menu">
+          <Link to="/">
+            <div className="header-menu">Home</div>
+          </Link>
           <Link to="/signup">
             <div className="header-menu">회원가입</div>
           </Link>
@@ -91,104 +106,12 @@ function Main() {
                     </h2>
                     <h1>Diet challenge</h1>
                     See what's my activity
-                    <div className="follow-buttons">
-                      <button className="follow">이전</button>
-                      <button className="follow follow-option active">
-                        다음
-                      </button>
-                    </div>
                   </div>
-                  <div className="videos">
-                    <div className="video">
-                      <div className="picture">15.13</div>
-                      <video muted>
-                        <img src type="picture" />
-                      </video>
-                      <div className="video-content">Planning Helps Make</div>
-                      <div className="view">15.4k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">13.10</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/356200184.sd.mp4?s=f528556cafba1d369984dc341104e7eef8bb71bb&profile_id=139&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">This Is Cloaud Break</div>
-                      <div className="view">13.2k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">15.30</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/364324653.sd.mp4?s=7ded2b451ac7f5dfaf1375277aa0308cdf5d011c&profile_id=139&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">Lost Your Mind</div>
-                      <div className="view">11.7k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">11.30</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/399004885.sd.mp4?s=1d39443bef9856dacc4d3ba2c6be0881e38b7e66&profile_id=139&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">Planning Helps Make</div>
-                      <div className="view">9.2k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">6.35</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/353556576.sd.mp4?s=8e942d8680fe908418143e63e04b8798982d5bea&profile_id=139&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">
-                        Research In Advertising
-                      </div>
-                      <div className="view">18.4k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">2.21</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/368556609.sd.mp4?s=3fa896a1d6d8c04382a9b8f33053d2eaabe4342b&profile_id=139&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">See The Unmatched</div>
-                      <div className="view">3.4k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">12.10</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/285489976.sd.mp4?s=4fa6461f93f18e0d6cfc30461fffb05311d60a28&profile_id=164&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">Dance In The Air</div>
-                      <div className="view">17.4k views</div>
-                    </div>
-                    <div className="video">
-                      <div className="video-time">7.50</div>
-                      <video muted>
-                        <source
-                          src="https://player.vimeo.com/external/325725646.sd.mp4?s=763c0f293299052689f8344b3a155ea2b4a1c92b&profile_id=164&oauth2_token_id=57447761"
-                          type="video/mp4"
-                        />
-                      </video>
-                      <div className="video-content">
-                        Sadness Will Last Forever
-                      </div>
-                      <div className="view">12.6k views</div>
-                    </div>
-                  </div>
+                  <Routes>
+                    <Route path="/" element={<div>hi</div>} />
+                    <Route path="/signup" element={<Signup />} />
+                  </Routes>
+
                   <div className="load-more">
                     <svg
                       id="me"
@@ -206,6 +129,9 @@ function Main() {
           </div>
         </div>
       </div>
+      <Modal open={modalOpen} close={closeModal}>
+        {alertmessage}
+      </Modal>
     </div>
   );
 }

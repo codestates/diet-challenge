@@ -1,7 +1,6 @@
 import Main from "./pages/main";
 import Home from "./pages/home";
-import Signup from "./pages/signup";
-import Mypage from "./pages/mypage";
+import CreatePost from "./components/mypost";
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,19 +29,18 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={login ? <Home /> : <Main />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/*" element={login ? <Home /> : <Main />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
       </Routes>
       <div>
-        <Link to="/signup">
-          <button className="test" type="butten">
-            회원가입
-          </button>
-        </Link>
         <button className="test" type="butten" onClick={testreduxfunction}>
           테스트
         </button>
+        <Link to="/createpost">
+          <button className="test" type="butten">
+            포스트
+          </button>
+        </Link>
       </div>
     </div>
   );
