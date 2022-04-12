@@ -36,8 +36,11 @@ img {
   background: linear-gradient(to right, #d2f0fa, #effafd);
 }
 .logo-title {
-  font-size: 30px;
-  color: var(--logo-color);
+  font-size: 20px;
+  font-family: 'yg-jalnan';
+  margin-left: 2%;
+  text-align: center; 
+  color:var(--logo-color)
 }
 .side-title {
   text-align: center;
@@ -120,14 +123,14 @@ body {
   color: rgb(19, 1, 1);
 }
 .main-header{
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'yg-jalnan';
   text-align: center; 
   color: var(--logo-color)
   
 }
 .main-header1{
-  font-size: 30px;
+  font-size: 40px;
   font-family: 'yg-jalnan';
   margin-left: 2%;
   text-align: center; 
@@ -850,9 +853,6 @@ h3 {
     display: none;
   }
 
-  .header-menu {
-    display: none;
-  }
 
   .search-bar input  {
     max-width: 140px;

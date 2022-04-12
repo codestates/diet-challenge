@@ -31,14 +31,8 @@ function App() {
       <Routes>
         <Route path="/*" element={login ? <Home /> : <Main />} />
         {/* <Route path="/signup" element={<Signup />} /> */}
-        <Route path="/createpost" element={<CreatePost />} />
       </Routes>
       <div>
-        <Link to="/signup">
-          <button className="test" type="butten">
-            회원가입
-          </button>
-        </Link>
         <button className="test" type="butten" onClick={testreduxfunction}>
           테스트
         </button>

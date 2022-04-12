@@ -8,6 +8,9 @@ import { FriendList } from "../components/friend/list";
 import Body from "../components/body";
 import Mypage from "../pages/mypage";
 import CreatePost from "../components/mypost";
+import Myposts from "../components/myposts"
+
+axios.defaults.withCredentials = true;
 
 function Home() {
   const dispatch = useDispatch();
@@ -15,6 +18,8 @@ function Home() {
 
   const accessToken = useSelector((state) => state.userreducer.accessToken);
   const reduxtest = useSelector((state) => state.userreducer.test);
+  const initialState = useSelector((state) => state.userreducer);
+  const img = useSelector((state) => state.userreducer.img);
 
   useEffect(() => {
     axios
@@ -33,12 +38,16 @@ function Home() {
       .catch(() => {
         console.log("error");
       });
-  }, []);
+  }, [initialState]);
 
   const Logout = () => {
     dispatch(setLogin());
     dispatch(setAccessToken(""));
     navigate("/");
+  };
+
+  const testfunction = () => {
+    console.log(img);
   };
 
   return (
@@ -94,15 +103,16 @@ function Home() {
                       친구와 함께 기록을 공유하며 함께 성공해요
                     </h2>
                     <h1 className="main-header1">Diet challenge</h1>
-                    <p className="main-header2">
-                      See what's my activity
-                      </p>
+                    See what's my activity
+                    {img && <img src={img} alt="preview-img" />}{" "}
+                    <button onClick={testfunction}>테스트</button>
                   </div>
 
                   <Routes>
                     <Route path="/" element={<Body />} />
                     <Route path="/createpost" element={<CreatePost />} />
                     <Route path="/mypage" element={<Mypage />} />
+                    <Route path="/mypost" element={<Myposts />} />
                   </Routes>
                   </div>
                 </div>
