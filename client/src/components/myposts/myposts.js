@@ -1,6 +1,6 @@
 import React from "react";
 
-function FriendPost() {
+function MyPost() {
   return (
     <div className="videos">
       <div className="video">
@@ -14,4 +14,4 @@ function FriendPost() {
     </div>
   );
 }
-export default FriendPost;
+export default MyPost;
