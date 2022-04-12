@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const [imageSrc, setImageSrc] = useState("");
   const [imgInfo, setImgInfo] = useState("");
+
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -17,6 +20,7 @@ const CreatePost = () => {
   const newpost = (e) => {
     setImgInfo(e.target.value);
   };
+
   return (
     <main className="container">
       {" "}

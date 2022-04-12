@@ -18,4 +18,5 @@ export const initialState = {
     { friendId: 5, nickname: "musk", request: false },
     { friendId: 6, nickname: "ronaldo", request: false },
   ],
+  img: "",
 };
