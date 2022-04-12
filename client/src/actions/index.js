@@ -2,6 +2,7 @@ export const TEST = "TEST";
 export const SETLOGIN = "SETLOGIN";
 export const SETACCESSTOKEN = "SETACCESSTOKEN";
 export const SETMAINPAGE = "SETMAINPAGE";
+export const SETIMG = "SETIMG";
 
 export const test = () => {
   return {
@@ -28,6 +29,14 @@ export const setMainPage = (data) => {
     type: SETMAINPAGE,
     payload: {
       data,
+    },
+  };
+};
+export const setImg = (img) => {
+  return {
+    type: SETIMG,
+    payload: {
+      img: img,
     },
   };
 };

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Modal } from "../modal";
+import { useSelector } from "react-redux";
 
 export const Addfriend = () => {
   const [nickname, setnickname] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [alertmessage, setalertmessage] = useState("");
+
+  const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const openModal = () => {
     setModalOpen(true);
@@ -26,7 +29,12 @@ export const Addfriend = () => {
       axios
         .post(
           `${process.env.REACT_APP_API_URL}/friends/add`,
-          { friendNickname: nickname },
+          {
+            friendNickname: nickname,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },
           {
             "Content-Type": "application/json",
             withCredentials: true,
@@ -46,10 +54,10 @@ export const Addfriend = () => {
   return (
     <div>
       <span>닉네임</span>
-      <input class="btn morph active"type="text" onChange={handleInputValue} />
+      <input class="btn morph active" type="text" onChange={handleInputValue} />
       <i class="fas fa-search"></i>
       <button type="butten" class="btn morph" onClick={handleRequest}>
-      <i class="fas fa-user-plus"></i>
+        <i class="fas fa-user-plus"></i>
         친구요청
       </button>
       <Modal open={modalOpen} close={closeModal}>
