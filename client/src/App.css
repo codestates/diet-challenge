@@ -66,12 +66,15 @@ body {
   width: 400px;
   height: 500px;
   position: relative;
-  margin: 15% auto;
+  margin: 12% auto;
   margin-left: 15%;
   background: rgb(255, 255, 255);
   padding: 5px;
   overflow: hidden;
   align-items: center;
+}
+.mypage-header{
+  background-color: rgb(161, 228, 240);
 }
 .button-wrap{
   width:  230px;
@@ -112,6 +115,11 @@ body {
   font-size: 15px;
   color: rgb(19, 1, 1);
 }
+.member2{
+  font-size: 18px;
+  margin-left: 5%;
+  color: rgb(19, 1, 1)
+}Rhd
 :placeholder{
   text-align: center;
   width: 80%;
@@ -159,6 +167,10 @@ body {
   height: 30px;
   border-radius: 2rem;
   text-align: center;
+}
+.btn-user{
+  margin-left: 20%;
+  color:rgb(255, 255, 255)
 }
 .header {
   height: 90px;

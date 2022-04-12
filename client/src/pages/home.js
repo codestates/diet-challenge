@@ -99,7 +99,7 @@ function Home() {
           
           <div className="follow-buttons">
             <button className="follow">이전</button>
-            <button className="follow follow-option active">다음</button>
+            <button className="follow follow-ox ption active">다음</button>
           </div>
         </div>
         <div className="videos">

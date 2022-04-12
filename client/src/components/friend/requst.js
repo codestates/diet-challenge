@@ -38,11 +38,12 @@ export const Requst = ({ name, id }) => {
         alt=""
         class="user-img"
       ></img> */}
-      <div>{name}</div>
+      <div className="member2">{name}</div>
       <div class="btn-user">
         <button class="btn morph" onClick={handleaccept}>
           <i class="fas fa-user-plus"></i>
           요청수락
+        <div />
         </button>
         <button class="btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>

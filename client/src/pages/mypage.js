@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -29,17 +30,46 @@ const handleLogout = () => {
         })
 }
 return (
-    <div className="mypageContainer">
+  <div className="video-app">
+      <div className="header">
+        <div className="header-left">
+          <div className="logo-title">Diet-challenge</div>
+        </div>
+        <div className="header-menu">
+          <Link to="/">
+            <div className="header-menu">Home</div>
+          </Link>
+        </div>
+      </div>
+  <div className="wrap">
+  <div className="form-wrap">
+  <div className="bottom-wrap">
       <div>
-        <h1 className="title">Mypage</h1>
+        <div className="mypage-header">
+        <div className="header-box block">
+        <div class="middle-container container">
+        <div class="profile block">
+        <a class="add-button" href="#28"><span class="icon entypo-plus scnd-font-color"></span></a>
+        <div class="profile-picture middle-profile-picture clear">
+        <img alt="" src="../pages/img/pngegg.jpg" />
+        </div>
+      <div className="item">나의 유저 네임: {userinfo.userId}</div>
+      <div className="item">나의 닉네임: {userinfo.usernickname}</div>
+      <div className="item">나의 목표: {userinfo.goal}</div>
         <button className="logoutBtn" onClick={handleLogout}>
           logout
         </button>
       </div>
-      <div className="item">나의 유저 네임: {userinfo.userId}</div>
-      <div className="item">나의 닉네임: {userinfo.usernickname}</div>
-      <div className="item">나의 목표: {userinfo.goal}</div>
     </div>
+        </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+ 
+  
 )
 }
 export default Mypage
