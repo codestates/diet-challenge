@@ -8,6 +8,7 @@ import { FriendList } from "../components/friend/list";
 import Body from "../components/body";
 import Mypage from "../pages/mypage";
 import CreatePost from "../components/mypost";
+import MyPosts from "../components/myposts";
 
 function Home() {
   const dispatch = useDispatch();
@@ -103,6 +104,7 @@ function Home() {
                     <Route path="/" element={<Body />} />
                     <Route path="/createpost" element={<CreatePost />} />
                     <Route path="/mypage" element={<Mypage />} />
+                    <Route path="/mypost" element={<MyPosts />} />
                   </Routes>
                 </div>
               </div>
