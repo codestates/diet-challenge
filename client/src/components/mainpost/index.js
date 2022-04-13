@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function MainPost() {
+  const latest = useSelector((state) => state.userreducer.latest);
+
   return (
     <div className="videos">
       <div className="video">

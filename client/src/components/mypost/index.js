@@ -57,7 +57,7 @@ const CreatePost = () => {
       };
 
       axios
-        .post(`${process.env.REACT_APP_API_URL}/users/signup`, formdata, config)
+        .post(`${process.env.REACT_APP_API_URL}/posts/creat`, formdata, config)
         .then(() => {
           navigate("/");
         })

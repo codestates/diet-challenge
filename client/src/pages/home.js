@@ -4,7 +4,6 @@ import { Friends } from "../components/friend/index";
 import axios from "axios";
 import { setAccessToken, setLogin, setMainPage, test } from "../actions/index";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
-import { FriendList } from "../components/friend/list";
 import Body from "../components/body";
 import Mypage from "../pages/mypage";
 import CreatePost from "../components/mypost";

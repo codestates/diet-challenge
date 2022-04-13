@@ -1,10 +1,10 @@
 import React from "react";
 
-function MyPost() {
+function MyPost({ id }) {
   return (
     <div className="videos">
       <div className="video">
-        <div className="picture">15.13</div>
+        <div className="picture">{id}</div>
         <video muted>
           <img src type="picture" />
         </video>

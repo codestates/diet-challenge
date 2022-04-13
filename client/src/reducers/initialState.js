@@ -1,6 +1,6 @@
 export const initialState = {
   isLogin: false,
-  accessToken: "",
+  accessToken: "dummyaccesstoken",
   userinfo: {
     id: "1",
     userid: "kimcoding",
@@ -8,7 +8,26 @@ export const initialState = {
     goal: "1주일에 3kg감량",
   },
   latest: { goal: "", info: "", img: "" },
-  friendslatest: [],
+  friendslatest: [
+    {
+      id: 8,
+      goal: "8888",
+      photo: null,
+      content: "8888",
+      user_id: 11,
+      createdAt: "2022-04-12T09:48:28.000Z",
+      updatedAt: "2022-04-12T09:48:28.000Z",
+    },
+    {
+      id: 6,
+      goal: "6666",
+      photo: null,
+      content: "6666",
+      user_id: 11,
+      createdAt: "2022-04-12T09:48:01.000Z",
+      updatedAt: "2022-04-12T09:48:01.000Z",
+    },
+  ],
   test: 0,
   friends: [
     { friendId: 1, nickname: "kimcoding", request: true },
@@ -19,4 +38,8 @@ export const initialState = {
     { friendId: 6, nickname: "ronaldo", request: false },
   ],
   img: "",
+  myposts: {
+    posts: [],
+    hasNext: false,
+  },
 };
