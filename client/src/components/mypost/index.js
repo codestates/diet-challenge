@@ -51,30 +51,30 @@ const CreatePost = () => {
       formdata.append("goal", goal);
 
       const config = {
-        Headers: {
+        headers: {
           "content-type": "multipart/form-data",
           Authorization: `Bearer ${accessToken}`,
         },
       };
       //${process.env.REACT_APP_API_URL}
       axios
-        .post(`http://localhost:4000/posts/create`, formdata, config)
+        .post(`${process.env.REACT_APP_API_URL}/posts/create`, formdata, config)
         .then((post) => {
           const { goal, photo, content } = post.data.data;
           // navigate("/");
+          console.log(goal, photo, content);
         })
         .catch(() => {
           alert("err");
         });
     }
-    dispatch(setImg(imageSrc));
-    navigate("/");
   };
 
   return (
     <main className="container">
       {" "}
       <h2>이미지 미리보기</h2>{" "}
+      {/* <p>추가한 사진 <img src="http://localhost:4000/image/43793e4cc63cda2a3f7cf05ff7931b7f" /></p> */}
       <input
         type="file"
         onChange={(e) => {
