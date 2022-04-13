@@ -89,10 +89,10 @@ create: (req, res) => {
     const { info, goal } = req.body;
     const imgPath = "/image/" + req.file.filename;
 
-    if (!img || !info || !goal)
-      return res
-        .status(400)
-        .json({ data: null, message: "잘못된 요청입니다." });
+    // if (!img || !info || !goal)
+    //   return res
+    //     .status(400)
+    //     .json({ data: null, message: "잘못된 요청입니다." });
 
     postModel
       .create({

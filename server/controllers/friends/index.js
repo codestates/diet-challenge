@@ -74,6 +74,7 @@ module.exports = {
   },
 
   add: async (req, res) => {
+    console.log(req.body);
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({

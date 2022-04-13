@@ -17,6 +17,12 @@
   --main-color: #fefffd;
   --body-color: #dddee0;
 }
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   outline: none;
@@ -30,8 +36,11 @@ img {
   background: linear-gradient(to right, #d2f0fa, #effafd);
 }
 .logo-title {
-  font-size: 30px;
-  color: var(--logo-color);
+  font-size: 20px;
+  font-family: 'yg-jalnan';
+  margin-left: 2%;
+  text-align: center; 
+  color:var(--logo-color)
 }
 .side-title {
   text-align: center;
@@ -54,23 +63,88 @@ body {
   font-weight: 600;
   min-height: -webkit-fill-available;
 }
+.card_image{
+  width: 320px;
+  height: 280px;
+  object-fit: cover
+}
+.follow-buttons{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.card-image:hover{
+  cursor: pointer;
+}
+.card_photo-name{
+  background-color: white;
+  height: 60px;
+  width: 320px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 10%;
+}
+.card_photo-title{
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 29px;
+  margin-left: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 70%;
+  color: #000000
+  
+}
+
 .wrap {
   height: 100%;
-  width: 100%;
+  width: 80%;
   background-position: bottom;
   background-size: cover;
-  position: absolute;
+
 }
 .form-wrap {
   width: 400px;
   height: 500px;
   position: relative;
-  margin: 15% auto;
-  margin-left: 15%;
-  background: rgb(255, 255, 255);
+  margin: 18% auto;
+  margin-left: 40%;
+  background: linear-gradient(to right, #f3f3f3, #eff3f1);
   padding: 5px;
   overflow: hidden;
   align-items: center;
+}
+.grid-image{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+.grid-image img{
+  width: calc(33.333% 10px);
+  margin: 20px 15px 15px 0;
+  margin-left: 10%;
+
+}
+.grid-image img:nth-of-type(4n),
+.grid-image img:last-child{
+  margin-right: 0;
+}
+
+.item{
+  font-size: 30px;
+  color:rgb(19, 1, 1);
+  margin-left: 10px;
+}
+.item1{
+  font-size: 20px;
+  color:rgb(19, 1, 1);
+  margin-left: 10px;
 }
 .button-wrap {
   width: 230px;
@@ -107,10 +181,32 @@ body {
   font-size: 30px;
   color: rgb(19, 1, 1);
 }
+
 .member1 {
   font-size: 15px;
   color: rgb(19, 1, 1);
 }
+.main-header{
+  font-size: 18px;
+  font-family: 'yg-jalnan';
+  text-align: center; 
+  color: var(--logo-color)
+  
+}
+.main-header1{
+  font-size: 40px;
+  font-family: 'yg-jalnan';
+  margin-left: 2%;
+  text-align: center; 
+  color:var(--logo-color)
+}
+.main-header2{
+  font-size: 20px;
+  margin-left: 2%;
+  text-align: left; 
+  color: rgb(19, 1, 1)
+}
+
 :placeholder {
   text-align: center;
   width: 80%;
@@ -136,6 +232,7 @@ body {
   border-radius: 30px;
   font-size: 20px;
 }
+
 .morph {
   border: 2px solid transparent;
   background: linear-gradient(160deg, #f0f1f4 0%, #e4e6eb 100%);
@@ -164,6 +261,10 @@ body {
   height: 30px;
   border-radius: 2rem;
   text-align: center;
+}
+.btn-user{
+  margin-left: 20%;
+  color:rgb(255, 255, 255)
 }
 .header {
   height: 90px;
@@ -502,15 +603,16 @@ h3 {
 
 .follow-buttons {
   display: flex;
+  color: #000000;
 }
 
 .follow {
   border: 2px solid var(--border-color);
   border-radius: 25px 0 0 25px;
-  color: var(--body-color);
+  color: rgb(19, 1, 1);
   padding: 8px 16px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
   background-color: transparent;
 }
@@ -816,9 +918,6 @@ h3 {
     display: none;
   }
 
-  .header-menu {
-    display: none;
-  }
 
   .search-bar input  {
     max-width: 140px;

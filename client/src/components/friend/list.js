@@ -1,15 +1,21 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const FriendList = ({ name, id }) => {
   const navigate = useNavigate();
+  const accessToken = useSelector((state) => state.userreducer.accessToken);
+
   const handledelete = () => {
     axios
       .delete(
         `${process.env.REACT_APP_API_URL}/friends/refuse`,
         { friendId: id },
         {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
           "Content-Type": "application/json",
           withCredentials: true,
         }
@@ -29,8 +35,8 @@ export const FriendList = ({ name, id }) => {
         {name}
         <button type="butten" class=" btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>
-          친구삭제</button>
-        
+          친구삭제
+        </button>
       </div>
     </div>
   );
