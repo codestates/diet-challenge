@@ -7,6 +7,7 @@ import { Modal } from "../modal";
 
 const CreatePost = () => {
   const [imageSrc, setImageSrc] = useState("");
+  const [photo, setPhoto] = useState(""); //추가
   const [imgInfo, setImgInfo] = useState("");
   const [alertmessage, setalertmessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,7 +46,7 @@ const CreatePost = () => {
       openModal();
     } else {
       const formdata = new FormData();
-      formdata.append("img", imageSrc);
+      formdata.append("img", photo);
       formdata.append("info", imgInfo);
       formdata.append("goal", goal);
 
@@ -55,11 +56,12 @@ const CreatePost = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       };
-
+      //${process.env.REACT_APP_API_URL}
       axios
-        .post(`${process.env.REACT_APP_API_URL}/users/signup`, formdata, config)
-        .then(() => {
-          navigate("/");
+        .post(`http://localhost:4000/posts/create`, formdata, config)
+        .then((post) => {
+          const { goal, photo, content } = post.data.data;
+          // navigate("/");
         })
         .catch(() => {
           alert("err");
@@ -77,6 +79,7 @@ const CreatePost = () => {
         type="file"
         onChange={(e) => {
           encodeFileToBase64(e.target.files[0]);
+          setPhoto(e.target.files[0]);
         }}
       />{" "}
       <div className="preview">
