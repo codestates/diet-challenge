@@ -1,4 +1,3 @@
-const fs = require("fs");
 const { post: postModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 
@@ -79,23 +78,37 @@ module.exports = {
       );
   },
 
-  create: async (req, res) => {
-    const image = req.file.path;
-    console.log("1 :", req.file);
-    console.log("2 :", image);
+  //client_post.js를 가정하고 만든 코드.
+  create: (req, res) => {
+    const userInfo = isAuthorized(req);
+    if (!userInfo)
+      return res.status(400).json({
+        data: null,
+        message: "invalid access token",
+      });
 
-    if (image) res.sendStatus(200);
-    else res.sendStatus(400);
-    // try {
-    //   // blob형태를 base64로 변환
-    //   const imgData = fs
-    //     .readFileSync(`req.file.path`)
-    //     .toString("base64");
-    //   // db에 path 저장
-    //   await Image.create({ path: imgData });
-    //   res.json({ path: imgData });
-    // } catch (err) {
-    //   res.status(400).json({ success: false, message: err.message });
-    // }
+    const { info, goal } = req.body;
+    const imgPath = "/image/" + req.file.filename;
+
+    if (!img || !info || !goal)
+      return res
+        .status(400)
+        .json({ data: null, message: "잘못된 요청입니다." });
+
+    postModel
+      .create({
+        goal,
+        photo: imgPath,
+        content: info,
+        user_id: userInfo.id,
+      })
+      .then((result) => {
+        if (!result)
+          return res.status(500).json({ data: null, message: "fail" });
+        res.status(201).json({ data: result, message: "ok" });
+      })
+      .catch((err) =>
+        res.status(500).json({ data: err, message: "server error" })
+      );
   },
 };
