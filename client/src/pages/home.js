@@ -24,20 +24,23 @@ function Home() {
     axios
       .get(
         `${process.env.REACT_APP_API_URL}/`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        },
-        { "Content-Type": "application/json", withCredentials: true }
+          "Content-Type": "application/json",
+          withCredentials: true,
+        }
       )
       .then((data) => {
+        console.log(data.data.data);
         dispatch(setMainPage(data.data.data));
       })
       .catch(() => {
         console.log("error");
       });
-  }, [initialState]);
+  }, []);
 
   const Logout = () => {
     dispatch(setLogin());

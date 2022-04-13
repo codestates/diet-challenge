@@ -1,5 +1,7 @@
-const friendModel = require("../../models/friend");
-const userModel = require("../../models/user");
+// const friendModel = require("../../models/friend");
+// const userModel = require("../../models/user");
+const { friend: friendModel } = require("../../models");
+const { user: userModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
@@ -68,6 +70,7 @@ module.exports = {
   },
 
   add: async (req, res) => {
+    console.log(req.body);
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({
