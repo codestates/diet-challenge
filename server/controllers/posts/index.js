@@ -78,8 +78,7 @@ module.exports = {
       );
   },
 
-  //client_post.js를 가정하고 만든 코드.
-  create: (req, res) => {
+create: (req, res) => {
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({

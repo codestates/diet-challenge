@@ -5,7 +5,7 @@ const { generateAccessToken, isAuthorized } = require("../tokenFunctions");
 module.exports = {
   login: async (req, res) => {
     const { userId, userPassword } = req.body;
-    
+
     try {
       const userInfo = await userModel.findOne({
         where: { userId, userPassword },
@@ -18,7 +18,6 @@ module.exports = {
       }
 
       delete userInfo.dataValues.userPassword;
-      // console.log(userInfo);
       const accessToken = generateAccessToken(userInfo.dataValues);
 
       if (accessToken) {
