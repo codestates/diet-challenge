@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       goal: DataTypes.STRING,
-      photo: DataTypes.BLOB,
+      photo: DataTypes.STRING,
       content: DataTypes.STRING(1234),
       user_id: DataTypes.INTEGER,
     },

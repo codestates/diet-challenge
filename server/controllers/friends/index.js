@@ -1,6 +1,7 @@
-const friendModel = require("../../models/friend");
-const userModel = require("../../models/user");
+const { friend: friendModel } = require("../../models");
+const { user: userModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
+const { Op } = require("sequelize");
 
 module.exports = {
   accept: (req, res) => {
@@ -12,7 +13,7 @@ module.exports = {
         message: "invalid access token",
       });
 
-    const { friends_id, friend_users_id } = req.query;
+    const { friends_id, friend_users_id } = req.body;
     if (!friends_id || !friend_users_id)
       return res
         .status(400)
@@ -30,8 +31,10 @@ module.exports = {
           });
         }
       })
-      .then(() => {
-        return res
+      .then((result) => {
+        if (!result)
+          return res.status(500).json({ data: null, message: "fail" });
+        res
           .status(201)
           .send({ data: null, message: "친구 요청을 수락했습니다." });
       })
@@ -49,14 +52,17 @@ module.exports = {
         message: "invalid access token",
       });
 
-    const { friends_id } = req.query;
+    const { friends_id } = req.params;
     if (!friends_id)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
+
     friendModel
       .destroy({ where: { id: friends_id } })
-      .then(() => {
+      .then((result) => {
+        if (!result)
+          return res.status(500).json({ data: null, message: "fail" });
         return res
           .status(200)
           .send({ data: null, message: `친구 요청을 거절했습니다.` });
@@ -76,57 +82,95 @@ module.exports = {
       });
 
     const { userNickName } = req.body; //파라미터로 보낼 수도 있음.
-    const friendUserData = await userModel.findOne({
-      where: { userNickName },
-    });
-
-    if (!friendUserData)
-      return res
-        .status(400)
-        .json({ data: null, message: "닉네임이 존재하지 않습니다." });
-
-    const userReqData = await friendModel.findOne({
-      where: { user_id: userInfo.id, fUser_id: friendUserData.id },
-    });
-
-    if (userReqData) {
-      if (userReqData.request)
-        return res.status(400).json({ data: null, message: "친구입니다." });
-      return res
-        .status(400)
-        .json({ data: null, message: "이미 요청된 친구입니다." });
-    }
-
-    const friendReqData = await friendModel.findOne({
-      where: { user_id: friendUserData.id, fUser_id: userInfo.id },
-    });
-
-    if (friendReqData) {
-      if (friendReqData.request)
-        return res.status(400).json({ data: null, message: "친구입니다." });
-      return res
-        .status(400)
-        .json({ data: null, message: "친구 요청 목록을 확인해주세요." });
-    }
-
-    //여기까지 왔으면 friends 테이블에 새로운 row를 추가해야 함!
-    //(user_id: userInfo.id, fUser_id: friendUserData.id, request: false(default))
-    const reqestToFriend = await friendModel.create({
-      user_id: userInfo.id,
-      fUser_id: friendUserData.id,
-    });
-
-    if (reqestToFriend) {
-      return res.status(201).json({
-        //data는 일단 임시임.. 메인 페이지가 다시 렌더링 되면서 friends data를 다시 받게 됨.
-        data: {
-          frineds_id: reqestToFriend.id,
-          fUser_id: reqestToFriend.fUser_id,
-        },
-        message: "ok",
+    try {
+      const friendUserData = await userModel.findOne({
+        where: { userNickName },
       });
-    }
 
-    return res.status(500).json({ data: null, message: "server error" });
+      if (!friendUserData)
+        return res
+          .status(400)
+          .json({ data: null, message: "닉네임이 존재하지 않습니다." });
+
+      const userReqData = await friendModel.findOne({
+        where: { user_id: userInfo.id, fUser_id: friendUserData.id },
+      });
+
+      if (userReqData) {
+        if (userReqData.request)
+          return res.status(203).json({ data: null, message: "친구입니다." });
+        return res
+          .status(203)
+          .json({ data: null, message: "이미 요청된 친구입니다." });
+      }
+
+      const friendReqData = await friendModel.findOne({
+        where: { user_id: friendUserData.id, fUser_id: userInfo.id },
+      });
+
+      if (friendReqData) {
+        if (friendReqData.request)
+          return res.status(203).json({ data: null, message: "친구입니다." });
+        return res
+          .status(203)
+          .json({ data: null, message: "친구 요청 목록을 확인해주세요." });
+      }
+
+      //여기까지 왔으면 friends 테이블에 새로운 row를 추가해야 함!
+      //(user_id: userInfo.id, fUser_id: friendUserData.id, request: false(default))
+      const reqestToFriend = await friendModel.create({
+        user_id: userInfo.id,
+        fUser_id: friendUserData.id,
+      });
+
+      if (reqestToFriend) {
+        return res.status(201).json({
+          //data는 일단 임시임.. 메인 페이지가 다시 렌더링 되면서 friends data를 다시 받게 됨.
+          data: {
+            frineds_id: reqestToFriend.id,
+            fUser_id: reqestToFriend.fUser_id,
+          },
+          message: "친구 요청이 완료됐습니다.",
+        });
+      }
+    } catch (err) {
+      res.status(500).json({ data: err, message: "server error" });
+    }
+  },
+
+  cancle: (req, res) => {
+    const userInfo = isAuthorized(req);
+    if (!userInfo)
+      return res.status(400).json({
+        data: null,
+        message: "invalid access token",
+      });
+
+    const { fId1, fId2 } = req.query;
+
+    if (!fId1 || !fId2)
+      return res
+        .status(400)
+        .json({ data: null, message: "잘못된 요청입니다." });
+
+    //friends테이블 fId1, fId2 row 2개 삭제하기.
+    friendModel
+      .destroy({
+        where: {
+          id: {
+            [Op.or]: [fId1, fId2], //또는 [Op.in]으로도 가능.
+          },
+        },
+      })
+      .then((result) => {
+        if (!result)
+          return res.status(500).json({ data: null, message: "fail" });
+        res
+          .status(200)
+          .json({ data: null, message: "친구 관계가 취소되었습니다." });
+      })
+      .catch((err) =>
+        res.status(500).json({ data: null, message: "server error" })
+      );
   },
 };
