@@ -1,4 +1,3 @@
-const fs = require("fs");
 const { post: postModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 
@@ -79,21 +78,21 @@ module.exports = {
       );
   },
 
-  create: (req, res) => {
-    console.log(req.headers);
+create: (req, res) => {
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({
         data: null,
         message: "invalid access token",
       });
+
     const { info, goal } = req.body;
     const imgPath = "/image/" + req.file.filename;
 
-    // if (!img || !info || !goal)
-    //   return res
-    //     .status(400)
-    //     .json({ data: null, message: "잘못된 요청입니다." });
+    if (!img || !info || !goal)
+      return res
+        .status(400)
+        .json({ data: null, message: "잘못된 요청입니다." });
 
     postModel
       .create({
