@@ -5,7 +5,7 @@ const { generateAccessToken, isAuthorized } = require("../tokenFunctions");
 module.exports = {
   login: async (req, res) => {
     const { userId, userPassword } = req.body;
-
+    
     try {
       const userInfo = await userModel.findOne({
         where: { userId, userPassword },
@@ -17,7 +17,8 @@ module.exports = {
           .json({ data: null, message: "해당하는 회원이 존재하지 않습니다" });
       }
 
-      delete userInfo.userPassword;
+      delete userInfo.dataValues.userPassword;
+      // console.log(userInfo);
       const accessToken = generateAccessToken(userInfo.dataValues);
 
       if (accessToken) {
