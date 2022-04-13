@@ -1,26 +1,22 @@
 import Main from "./pages/main";
 import Home from "./pages/home";
-import CreatePost from "./components/mypost";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setAccessToken, setLogin, test } from "./actions/index";
+import { useSelector } from "react-redux";
+
 import "./App.css";
 
 function App() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     navigate("/");
   }, []);
 
-  const reduxtest = useSelector((state) => state.userreducer.test); //테스트용 값
   const login = useSelector((state) => state.userreducer.isLogin);
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const testreduxfunction = () => {
-    dispatch(setLogin());
     console.log(accessToken);
     // dispatch(test());
     // console.log(reduxtest);
@@ -30,7 +26,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/*" element={login ? <Home /> : <Main />} />
-        {/* <Route path="/signup" element={<Signup />} /> */}
       </Routes>
       <div>
         <button className="test" type="butten" onClick={testreduxfunction}>
@@ -38,7 +33,7 @@ function App() {
         </button>
         <Link to="/createpost">
           <button className="test" type="butten">
-            포스트
+            포스트1
           </button>
         </Link>
       </div>

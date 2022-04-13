@@ -41,13 +41,15 @@ function MyPosts() {
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/post?offset=${offset}&limit=6`,
+        `${process.env.REACT_APP_API_URL}/posts?offset=${offset}&limit=6`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        },
-        { "Content-Type": "application/json", withCredentials: true }
+          "Content-Type": "application/json",
+          withCredentials: true,
+        }
       )
       .then((data) => {
         setposts(data.data.data.posts);
@@ -59,10 +61,10 @@ function MyPosts() {
   }, [offset]);
 
   const handleback = () => {
-    setoffset(offset - 1);
+    setoffset(offset - 6);
   };
   const handlefront = () => {
-    setoffset(offset + 1);
+    setoffset(offset + 6);
   };
 
   return (
@@ -71,12 +73,12 @@ function MyPosts() {
         <div class="follow-buttons">
           {offset === 0 ? null : (
             <button class="follow" onClick={handleback}>
-              뒤로가기
+              이전 사진
             </button>
           )}
           {hasnext ? (
             <button class="follow follow-option active" onClick={handlefront}>
-              앞으로가기
+              다음 사진
             </button>
           ) : null}
         </div>
