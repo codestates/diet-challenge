@@ -8,7 +8,7 @@ import { FriendList } from "../components/friend/list";
 import Body from "../components/body";
 import Mypage from "../pages/mypage";
 import CreatePost from "../components/mypost";
-import MyPosts from "../components/myposts";
+import Myposts from "../components/myposts"
 
 axios.defaults.withCredentials = true;
 
@@ -54,7 +54,7 @@ function Home() {
     <div className="video-app">
       <div className="header">
         <div className="header-left">
-          <div className="logo-title">Diet-challenge</div>
+          <div className="logo-title">Diet challenge</div>
         </div>
         <div className="header-menu">
           <Link to="/">
@@ -94,17 +94,15 @@ function Home() {
           </div>
         </div>
 
-        <div className="wrapper">
-          <div className="app-body">
-            <div className="body-title">
+        <div className="wrap">
+          <div className="body">
               <div className="body-menu">
                 <div id="top-banner" className="banner">
-                  <div className="banner-inner-wrapper">
-                    <h2>
+                    <h1 className="main-header1">Diet challenge</h1>
+                    <h2 className="main-header">
                       다이어트 n년차! 이번엔 성공하자 <br />
                       친구와 함께 기록을 공유하며 함께 성공해요
                     </h2>
-                    <h1>Diet challenge</h1>
                     See what's my activity
                     {img && <img src={img} alt="preview-img" />}{" "}
                     <button onClick={testfunction}>테스트</button>
@@ -114,15 +112,15 @@ function Home() {
                     <Route path="/" element={<Body />} />
                     <Route path="/createpost" element={<CreatePost />} />
                     <Route path="/mypage" element={<Mypage />} />
-                    <Route path="/mypost" element={<MyPosts />} />
+                    <Route path="/mypost" element={<Myposts />} />
                   </Routes>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+   
+
   );
 }
 export default Home;

@@ -4,8 +4,8 @@ import MainPost from "./mainpost";
 
 function Body() {
   return (
-    <div>
-      <MainPost />
+    <div className="gallery">
+        <MainPost />
       <FriendPost />
     </div>
   );
