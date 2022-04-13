@@ -63,6 +63,44 @@ body {
   font-weight: 600;
   min-height: -webkit-fill-available;
 }
+.card_image{
+  width: 320px;
+  height: 280px;
+  object-fit: cover
+}
+.follow-buttons{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.card-image:hover{
+  cursor: pointer;
+}
+.card_photo-name{
+  background-color: white;
+  height: 60px;
+  width: 320px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 10%;
+}
+.card_photo-title{
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 29px;
+  margin-left: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 70%;
+  color: #000000
+  
+}
+
 .wrap {
   height: 100%;
   width: 80%;
@@ -70,17 +108,43 @@ body {
   background-size: cover;
 
 }
-
 .form-wrap {
   width: 400px;
   height: 500px;
   position: relative;
-  margin: 12% auto;
-  margin-left: 15%;
-  background: rgb(255, 255, 255);
+  margin: 18% auto;
+  margin-left: 40%;
+  background: linear-gradient(to right, #f3f3f3, #eff3f1);
   padding: 5px;
   overflow: hidden;
   align-items: center;
+}
+.grid-image{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+.grid-image img{
+  width: calc(33.333% 10px);
+  margin: 20px 15px 15px 0;
+  margin-left: 10%;
+
+}
+.grid-image img:nth-of-type(4n),
+.grid-image img:last-child{
+  margin-right: 0;
+}
+
+.item{
+  font-size: 30px;
+  color:rgb(19, 1, 1);
+  margin-left: 10px;
+}
+.item1{
+  font-size: 20px;
+  color:rgb(19, 1, 1);
+  margin-left: 10px;
 }
 .button-wrap {
   width: 230px;
@@ -539,15 +603,16 @@ h3 {
 
 .follow-buttons {
   display: flex;
+  color: #000000;
 }
 
 .follow {
   border: 2px solid var(--border-color);
   border-radius: 25px 0 0 25px;
-  color: var(--body-color);
+  color: rgb(19, 1, 1);
   padding: 8px 16px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
   background-color: transparent;
 }
