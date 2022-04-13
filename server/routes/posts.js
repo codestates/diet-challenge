@@ -1,15 +1,13 @@
 const router = require("express").Router();
-const multer = require("multer");
-const { imageFilter, storage } = require("./middleware");
 const controller = require("../controllers/posts");
+const multer = require("multer");
 
-const upload = multer({ storage, fileFilter: imageFilter });
-
+const upload = multer({ dest: "./upload" });
 //라우터
 router.get("/", controller.post);
 
-router.delete("/delete", controller.delete);
+router.delete("/delete/:id", controller.delete);
 
-router.post("/create", upload.single("image"), controller.create);
+router.post("/create", upload.single("img"), controller.create);
 
 module.exports = router;

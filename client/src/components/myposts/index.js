@@ -66,21 +66,32 @@ function MyPosts() {
   };
 
   return (
-    <div className="videos">
-      {posts.map((el) => {
-        return (
-          <MyPost
-            id={el.id}
-            photo={el.photo}
-            goal={el.goal}
-            content={el.content}
-          />
-        );
-      })}
-
-      <div>
-        {offset === 0 ? null : <button onClick={handleback}>뒤로가기</button>}
-        {hasnext ? <button onClick={handlefront}>앞으로가기</button> : null}
+    <div className="main">
+      <div className="row">
+        <div class="follow-buttons">
+          {offset === 0 ? null : (
+            <button class="follow" onClick={handleback}>
+              뒤로가기
+            </button>
+          )}
+          {hasnext ? (
+            <button class="follow follow-option active" onClick={handlefront}>
+              앞으로가기
+            </button>
+          ) : null}
+        </div>
+        <div className="grid-image">
+          {posts.map((el) => {
+            return (
+              <MyPost
+                id={el.id}
+                photo={el.photo}
+                goal={el.goal}
+                content={el.content}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

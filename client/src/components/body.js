@@ -7,7 +7,7 @@ function Body() {
   const friendslatest = useSelector((state) => state.userreducer.friendslatest);
 
   return (
-    <div>
+    <div className="gallery">
       <MainPost />
 
       {friendslatest.map((el) => {

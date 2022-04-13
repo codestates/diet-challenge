@@ -17,15 +17,19 @@ export const Friends = () => {
   return (
     <div className="app-body-side">
       <div className="side-wrpper">
-        <div className="side-title2">친구추가</div>
-        <Addfriend />
-        <div className="side-title"></div>
+        <div className="side-menu">
+          <Addfriend />
+          <div className="side-title">친구요청</div>
+        </div>
+
         {requestfriend.map((el) => {
           return <Requst name={el.nickname} id={el.friendId} />;
         })}
       </div>
+      <div className="side-menu">
+        <div className="side-title">친구목록</div>
+      </div>
 
-      <div className="side-title1">친구목록</div>
       {friendlist.map((el) => {
         return <FriendList name={el.nickname} id={el.friendId} />;
       })}
