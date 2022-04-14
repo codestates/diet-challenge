@@ -8,10 +8,10 @@ export const Friends = () => {
   const allfriendlist = useSelector((state) => state.userreducer.friends);
 
   const friendlist = allfriendlist.filter((el) => {
-    return el.request === true;
+    return el.request === 1;
   });
   const requestfriend = allfriendlist.filter((el) => {
-    return el.request === false;
+    return el.request === 0;
   });
 
   return (
@@ -23,7 +23,9 @@ export const Friends = () => {
         </div>
 
         {requestfriend.map((el) => {
-          return <Requst name={el.nickname} id={el.friendId} />;
+          return (
+            <Requst name={el.nickname} id={el.friendId} tableid={el.tableId} />
+          );
         })}
       </div>
       <div className="side-menu">

@@ -1,16 +1,18 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { acceptfriend, deletefriend } from "../../actions";
 
-export const Requst = ({ name, id }) => {
+export const Requst = ({ name, id, tableid }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const handledelete = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}/friends/refuse/{}`, //파라미터 사용(친구테이블 id)
+        `${process.env.REACT_APP_API_URL}/friends/refuse/${tableid}`, //파라미터 사용(친구테이블 id)
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -19,14 +21,18 @@ export const Requst = ({ name, id }) => {
           withCredentials: true,
         }
       )
+      .then(() => {
+        dispatch(deletefriend(id));
+      })
       .catch(() => console.log("delete"));
     navigate("/");
   };
   const handleaccept = () => {
+    console.log(id);
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/friends/accept`,
-        { friendTableId: id, friend_users_id: "" }, //메인페이지에서 전달받은 친구 정보중 친구테이블 id, 친구의 users 테이블 id
+        { friendTableId: tableid, friend_users_id: id }, //메인페이지에서 전달받은 친구 정보중 친구테이블 id, 친구의 users 테이블 id
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -35,6 +41,9 @@ export const Requst = ({ name, id }) => {
           withCredentials: true,
         }
       )
+      .then(() => {
+        dispatch(acceptfriend(id));
+      })
       .catch(() => console.log("accept"));
     navigate("/");
   };

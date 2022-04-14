@@ -55,7 +55,7 @@ html {
 .input-field {
   text-align: center;
 }
-.new1{
+.new1 {
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 15px;
@@ -70,12 +70,11 @@ body {
   min-height: -webkit-fill-available;
 }
 
-
-.card_image1{
+.card_image1 {
   width: 500px;
   height: 250px;
   margin-left: 5%;
-  object-fit: cover  
+  object-fit: cover;
 }
 .picture-content {
   width: 100%;
@@ -86,7 +85,6 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
 }
 .follow-buttons {
   margin-top: 10px;
@@ -107,7 +105,7 @@ body {
   align-items: center;
   margin-left: 10%;
 }
-.card_photo-name1{
+.card_photo-name1 {
   background-color: white;
   height: 35px;
   width: 500px;
@@ -116,7 +114,7 @@ body {
   align-items: center;
   margin-left: 5%;
 }
-.card_photo-name2{
+.card_photo-name2 {
   background-color: white;
   height: 35px;
   width: 280px;
@@ -125,8 +123,7 @@ body {
   align-items: center;
   margin-left: 5%;
 }
-.card_photo-title{
-
+.card_photo-title {
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -137,9 +134,9 @@ body {
   overflow: hidden;
   width: 70%;
 
-  color: #000000  
+  color: #000000;
 }
-.card_photo-title1{
+.card_photo-title1 {
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -149,10 +146,10 @@ body {
   white-space: nowrap;
   overflow: hidden;
   width: 70%;
-  color: #000000  
+  color: #000000;
 }
 
-.card_photo-title2{
+.card_photo-title2 {
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -162,8 +159,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  color: #000000  
-
+  color: #000000;
 }
 
 .wrap {
@@ -173,7 +169,6 @@ body {
   background-size: cover;
 
   background: linear-gradient(to right, #fdfdfd, #f7dbdb);
-
 }
 .form-wrap {
   width: 400px;
@@ -187,22 +182,19 @@ body {
   align-items: center;
 }
 
-.footer-wrap{
+.footer-wrap {
   background: linear-gradient(to right, #f3f3f3, #eff3f1);
 }
 .picture {
   width: 340px;
   height: 280px;
-  text-align: left; 
+  text-align: left;
   margin-left: 10px;
   background-color: white;
   background-size: cover;
-   
-  
 }
 
-.grid-image{
-
+.grid-image {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -270,12 +262,11 @@ body {
   color: rgb(19, 1, 1);
 }
 
-.main-header{
+.main-header {
   font-size: 20px;
-  font-family: 'yg-jalnan';
-  text-align: center; 
-  color: var(--logo-color)
-  
+  font-family: "yg-jalnan";
+  text-align: center;
+  color: var(--logo-color);
 }
 .profile {
   height: 45vh;
@@ -285,9 +276,9 @@ body {
   display: flex;
 
   flex-direction: column;
- }
- 
- .profile-cover {
+}
+
+.profile-cover {
   position: absolute;
   top: 0;
   left: 0;
@@ -296,9 +287,9 @@ body {
   object-fit: cover;
   object-position: center;
   border-radius: 4px 4px 6px 6px;
- }
- 
- .profile-menu {
+}
+
+.profile-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -308,61 +299,59 @@ body {
   border-radius: 0 0 4px 4px;
   padding: 0 25px;
   z-index: 2;
- }
- 
- .profile-img {
+}
+
+.profile-img {
   border-radius: 50%;
   width: 42px;
   height: 42px;
   object-fit: cover;
   margin-right: 15px;
- }
- 
- .profile-avatar {
+}
+
+.profile-avatar {
   display: flex;
   align-items: center;
   flex-shrink: 0;
- }
- 
- .profile-name {
-  white-space: nowrap;
- }
-.main-header1{
+}
 
+.profile-name {
+  white-space: nowrap;
+}
+.main-header1 {
   font-size: 40px;
   font-family: "yg-jalnan";
   margin-left: 2%;
 
   margin-top: 20%;
-  text-align: center; 
-  color:var(--logo-color)
+  text-align: center;
+  color: var(--logo-color);
 }
-.main-header2{
+.main-header2 {
   font-size: 15px;
 
   margin-left: 2%;
   text-align: left;
   color: rgb(19, 1, 1);
 }
-.home-header{
-  font-size: 5                                                                                                                                     0px;
-  font-family: 'yg-jalnan';
+.home-header {
+  font-size: 5 0px;
+  font-family: "yg-jalnan";
   margin-left: 2%;
   margin-top: 2%;
   margin-bottom: 0px;
-  text-align: center; 
-  color:var(--logo-color)
+  text-align: center;
+  color: var(--logo-color);
 }
-.home-header1{
+.home-header1 {
   font-size: 25px;
-  font-family: 'yg-jalnan';
+  font-family: "yg-jalnan";
   margin-left: 2%;
-  text-align: center; 
-  color:var(--logo-color)
+  text-align: center;
+  color: var(--logo-color);
 }
-.popup popup-picture{
+.popup popup-picture {
   background: linear-gradient(to right, #fdfdfd, #f7dbdb);
-
 }
 :placeholder {
   text-align: center;
@@ -416,18 +405,16 @@ body {
 }
 .btn {
   height: 30px;
-  
+
   border-radius: 2rem;
   text-align: center;
 }
 
-
-.btn-user{
-
+.btn-user {
   margin-left: 20%;
   color: rgb(255, 255, 255);
 }
-.btn morph{
+.btn morph {
   width: 300px;
   margin-left: 20px;
 }
@@ -470,17 +457,16 @@ body {
   padding: 0 20px 0 0;
 }
 
-.header-menu1{
-  
+.header-menu1 {
   margin-right: 15px;
   margin-left: 20px;
   margin-top: 10px;
-  color:#000000
+  color: #000000;
 }
 .header-menu2 {
   margin-right: 12px;
   margin-left: 12px;
-  color:#000000
+  color: #000000;
 }
 .menu-item:hover {
   color: var(--logo-color);
@@ -589,7 +575,7 @@ body {
 .side-wrapper:not(:last-child) {
   border-bottom: 1px solid var(--border-color);
 }
-.side-wrapper{
+.side-wrapper {
   width: 300px;
 }
 .side-wrapper svg {
@@ -848,7 +834,6 @@ h3 {
 .video:hover .view {
   padding: 10px;
 }
-
 
 .video-content {
   width: 100%;

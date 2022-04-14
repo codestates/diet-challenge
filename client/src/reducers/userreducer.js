@@ -5,6 +5,11 @@ import {
   SETACCESSTOKEN,
   SETMAINPAGE,
   SETIMG,
+  DELETEFRIEND,
+  ACCEPTFRIEND,
+  CHANGENICKNAME,
+  CHANGEGOAL,
+  SETSWITCH,
 } from "../actions/index";
 
 const userreducer = (state = initialState, action) => {
@@ -25,6 +30,40 @@ const userreducer = (state = initialState, action) => {
 
     case SETIMG:
       return Object.assign({}, state, { img: action.payload.img });
+
+    case DELETEFRIEND:
+      return Object.assign({}, state, {
+        friends: state.friends.filter((el) => {
+          return el.friendId !== action.payload.friendId;
+        }),
+      });
+
+    case ACCEPTFRIEND:
+      return Object.assign({}, state, {
+        friends: state.friends.map((el) => {
+          if (el.friendId === action.payload.friendId) {
+            el.request = 1;
+          }
+          return el;
+        }),
+      });
+
+    case CHANGENICKNAME:
+      return Object.assign({}, state, {
+        userInfo: Object.assign(state.userInfo, {
+          userNickName: action.payload.userNickName,
+        }),
+      });
+
+    case CHANGEGOAL:
+      return Object.assign({}, state, {
+        userInfo: Object.assign(state.userInfo, {
+          nowGoal: action.payload.nowGoal,
+        }),
+      });
+
+    case SETSWITCH:
+      return Object.assign({}, state, { switch: !state.switch });
 
     default:
       return state;

@@ -1,24 +1,30 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deletefriend } from "../../actions";
 
 export const FriendList = ({ name, id }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const handledelete = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}/friends/cancle/친구의 users 테이블 id`, //파라미터로 받음.
+        `${process.env.REACT_APP_API_URL}/friends/cancle/${id}`, //파라미터로 받음.
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
+
           "Content-Type": "application/json",
           withCredentials: true,
         }
       )
+      .then(() => {
+        dispatch(deletefriend(id));
+      })
       .catch(() => console.log("test"));
     navigate("/");
   };
@@ -30,7 +36,7 @@ export const FriendList = ({ name, id }) => {
         alt=""
         class="user-img"
       ></img> */}
-      <div className="username1">
+      <div className="member1">
         {name}
         <button type="butten" class=" btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>
