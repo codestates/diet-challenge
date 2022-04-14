@@ -93,24 +93,30 @@ module.exports = {
 
   check: async (req, res) => {
     const { userId, userNickName } = req.body;
-    if (userId) {
-      const idCheck = await userModel.findOne({
-        where: { userId },
-      });
+    try {
+      if (userId) {
+        const idCheck = await userModel.findOne({
+          where: { userId },
+        });
 
-      if (idCheck)
-        return res.status(409).json({ message: "이미 사용 중인 ID입니다." });
-      res.status(200).json({ data: null, message: "중복 없음" });
-    }
+        if (idCheck)
+          return res.status(409).json({ message: "이미 사용 중인 ID입니다." });
+        res.status(200).json({ data: null, message: "중복 없음" });
+      }
 
-    if (userNickName) {
-      const nickNameCheck = await userModel.findOne({
-        where: { userNickName },
-      });
+      if (userNickName) {
+        const nickNameCheck = await userModel.findOne({
+          where: { userNickName },
+        });
 
-      if (nickNameCheck)
-        return res.status(409).json({ message: "이미 사용 중인 닉네임입니다" });
-      res.status(200).json({ data: null, message: "중복 없음" });
+        if (nickNameCheck)
+          return res
+            .status(409)
+            .json({ message: "이미 사용 중인 닉네임입니다" });
+        res.status(200).json({ data: null, message: "중복 없음" });
+      }
+    } catch (err) {
+      res.status(500).json({ message: "server error" });
     }
   },
 };
