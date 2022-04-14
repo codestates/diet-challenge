@@ -1,5 +1,4 @@
-const { friend: friendModel } = require("../../models");
-const { user: userModel } = require("../../models");
+const { friend: friendModel, user: userModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 const { Op } = require("sequelize");
 
@@ -147,24 +146,27 @@ module.exports = {
         message: "invalid access token",
       });
 
-    const { fId1, fId2 } = req.query;
+    const me = userInfo.id;
+    const { friend } = req.query;
 
-    if (!fId1 || !fId2)
+    if (!friend)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
 
-    //friends테이블 fId1, fId2 row 2개 삭제하기.
+    //friends테이블 row 2개 삭제하기.
+    //(user_id=me, fUser_id=friend) or (user_id=friend, fUser_id=me)
     friendModel
       .destroy({
         where: {
-          id: {
-            [Op.or]: [fId1, fId2], //또는 [Op.in]으로도 가능.
-          },
+          [Op.or]: [
+            { user_id: me, fUser_id: friend },
+            { user_id: friend, fUser_id: me },
+          ],
         },
       })
       .then((result) => {
-        if (!result)
+        if (result !== 2)
           return res.status(500).json({ data: null, message: "fail" });
         res
           .status(200)
