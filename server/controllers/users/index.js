@@ -1,4 +1,7 @@
 const { user: userModel } = require("../../models");
+const { post: postModel } = require("../../models");
+const { friend: friendModel } = require("../../models");
+
 const { Op } = require("sequelize");
 const { generateAccessToken, isAuthorized } = require("../tokenFunctions");
 
