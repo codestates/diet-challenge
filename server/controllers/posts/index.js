@@ -1,4 +1,4 @@
-const { post: postModel } = require("../../models");
+const { post: postModel, user: userModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
@@ -78,7 +78,7 @@ module.exports = {
       );
   },
 
-create: (req, res) => {
+  create: (req, res) => {
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({
@@ -101,9 +101,22 @@ create: (req, res) => {
         content: info,
         user_id: userInfo.id,
       })
+      .then((created) => {
+        if (!created)
+          return res
+            .status(500)
+            .json({ data: null, message: "create post fail" });
+
+        return userModel.update(
+          { latestPostId: created.id },
+          { where: { id: userInfo.id } }
+        );
+      })
       .then((result) => {
         if (!result)
-          return res.status(500).json({ data: null, message: "fail" });
+          return res
+            .status(500)
+            .json({ data: null, message: "lastestPostId update fail" });
         res.status(201).json({ data: result, message: "ok" });
       })
       .catch((err) =>

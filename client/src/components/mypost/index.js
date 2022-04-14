@@ -56,7 +56,6 @@ const CreatePost = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       };
-      //${process.env.REACT_APP_API_URL}
       axios
         .post(`${process.env.REACT_APP_API_URL}/posts/create`, formdata, config)
         .then((post) => {
