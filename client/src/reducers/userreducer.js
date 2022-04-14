@@ -7,6 +7,9 @@ import {
   SETIMG,
   DELETEFRIEND,
   ACCEPTFRIEND,
+  CHANGENICKNAME,
+  CHANGEGOAL,
+  SETSWITCH,
 } from "../actions/index";
 
 const userreducer = (state = initialState, action) => {
@@ -44,6 +47,23 @@ const userreducer = (state = initialState, action) => {
           return el;
         }),
       });
+
+    case CHANGENICKNAME:
+      return Object.assign({}, state, {
+        userInfo: Object.assign(state.userInfo, {
+          userNickName: action.payload.userNickName,
+        }),
+      });
+
+    case CHANGEGOAL:
+      return Object.assign({}, state, {
+        userInfo: Object.assign(state.userInfo, {
+          nowGoal: action.payload.nowGoal,
+        }),
+      });
+
+    case SETSWITCH:
+      return Object.assign({}, state, { switch: !state.switch });
 
     default:
       return state;

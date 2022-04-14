@@ -4,7 +4,7 @@ export const initialState = {
   userInfo: {
     id: "1",
     userId: "kimcoding",
-    usernickname: "김코딩",
+    userNickName: "김코딩",
     nowGoal: "1주일에 3kg감량",
     latestPostId: null,
     authorization: false,
@@ -44,4 +44,5 @@ export const initialState = {
     posts: [],
     hasNext: false,
   },
+  switch: true,
 };

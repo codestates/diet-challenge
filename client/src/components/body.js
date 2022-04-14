@@ -8,16 +8,13 @@ function Body() {
 
   return (
     <div className="gallery">
+      <div className="member1">나의 최근 포스트</div>
       <MainPost />
+      <div className="member1">친구의 활동</div>
 
       {friendslatest.map((el) => {
         return (
-          <FriendPost
-            id={el.id}
-            goal={el.goal}
-            content={el.content}
-            photo={el.photo}
-          />
+          <FriendPost id={el.id} goal={el.goal} info={el.info} img={el.img} />
         );
       })}
     </div>

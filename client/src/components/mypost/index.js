@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setImg } from "../../actions/index";
+import { setSwitch } from "../../actions/index";
 import { Modal } from "../modal";
 
 const CreatePost = () => {
@@ -60,6 +60,7 @@ const CreatePost = () => {
         .post(`${process.env.REACT_APP_API_URL}/posts/create`, formdata, config)
         .then((post) => {
           navigate("/");
+          dispatch(setSwitch());
         })
         .catch(() => {
           alert("err");

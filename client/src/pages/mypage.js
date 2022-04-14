@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "../components/modal";
-import { setMainPage, setLogin, setAccessToken } from "../actions/index";
+import {
+  setchangenickname,
+  setchangegoal,
+  setLogin,
+  setAccessToken,
+} from "../actions/index";
 import { useNavigate } from "react-router-dom";
 
 function Mypage() {
@@ -88,7 +93,7 @@ function Mypage() {
       axios
         .post(
           `${process.env.REACT_APP_API_URL}/change/nickname`,
-          { userNickName: nickname },
+          { usernickname: nickname },
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -97,13 +102,14 @@ function Mypage() {
           }
         )
         .then(() => {
-          dispatch(
-            setMainPage({
-              userInfo: {
-                userNickName: nickname,
-              },
-            })
-          );
+          dispatch(setchangenickname(nickname));
+          // dispatch(
+          //   setMainPage({
+          //     userInfo: {
+          //       usernickname: nickname,
+          //     },
+          //   })
+          // );
           setalertmessage("닉네임이 변경됐습니다");
           openModal();
         })
@@ -123,7 +129,7 @@ function Mypage() {
       axios
         .post(
           `${process.env.REACT_APP_API_URL}/change/goal`,
-          { nowGoal: goal },
+          { goal: goal },
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -132,13 +138,14 @@ function Mypage() {
           }
         )
         .then(() => {
-          dispatch(
-            setMainPage({
-              userInfo: {
-                nowGoal: goal,
-              },
-            })
-          );
+          // dispatch(
+          //   setMainPage({
+          //     userInfo: {
+          //       nowGoal: goal,
+          //     },
+          //   })
+          // );
+          dispatch(setchangegoal(goal));
           setalertmessage("목표가 변경됐습니다");
           openModal();
         })

@@ -36,7 +36,7 @@ export const FriendList = ({ name, id }) => {
         alt=""
         class="user-img"
       ></img> */}
-      <div className="username1">
+      <div className="member1">
         {name}
         <button type="butten" class=" btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>

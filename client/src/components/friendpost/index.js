@@ -1,38 +1,20 @@
 import React from "react";
 
-function FriendPost() {
+function FriendPost({ info, img }) {
   return (
     <section className="popup popup-picture">
-   
       <div className="container">
-      <div className="member1">
-        친구의 활동
+        <form className="grid-image">
+          <div className="picture">
+            <img
+              src={`${process.env.REACT_APP_API_URL}${img}`}
+              className="card_image"
+            />
+            <p className="card_photo-title2">{info}</p>
+          </div>
+        </form>
       </div>
-  <form className="grid-image">
-    <div className="picture">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHrmpzOG2EyzjEXAFocxaOc4OmSY33_vDXA&usqp=CAU" className="card_image" alt="" />
-    <p className="card_photo-title2">
-      강아지와 산책
-    </p>
-  </div>
-    <div className="picture">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHrmpzOG2EyzjEXAFocxaOc4OmSY33_vDXA&usqp=CAU" className="card_image" alt="" />
-    <p className="card_photo-title2">
-      강아지와 산책
-    </p>
-  </div>
-    <div className="picture">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHrmpzOG2EyzjEXAFocxaOc4OmSY33_vDXA&usqp=CAU" className="card_image" alt="" />
-    <p className="card_photo-title2">
-      강아지와 산책
-    </p>
-  </div>
-    
-  </form>
-      </div>
-
-   </section>
-    
+    </section>
   );
 }
 export default FriendPost;
