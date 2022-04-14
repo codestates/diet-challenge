@@ -6,27 +6,27 @@ module.exports = {
       {
         userId: "one",
         userNickName: "yoon",
-        userPassword: "1111",
+        userPassword: "11111111",
       },
       {
         userId: "two",
         userNickName: "choi",
-        userPassword: "2222",
+        userPassword: "22222222",
       },
       {
         userId: "three",
         userNickName: "hong",
-        userPassword: "3333",
+        userPassword: "33333333",
       },
       {
         userId: "four",
         userNickName: "kim",
-        userPassword: "4444",
+        userPassword: "44444444",
       },
       {
         userId: "five",
         userNickName: "do",
-        userPassword: "5555",
+        userPassword: "55555555",
       },
     ]);
   },

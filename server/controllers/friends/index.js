@@ -64,7 +64,7 @@ module.exports = {
           return res.status(500).json({ data: null, message: "fail" });
         return res
           .status(200)
-          .send({ data: null, message: `친구 요청을 거절했습니다.` });
+          .json({ data: null, message: `친구 요청을 거절했습니다.` });
       })
       .catch((err) => {
         console.log(err);
@@ -73,7 +73,6 @@ module.exports = {
   },
 
   add: async (req, res) => {
-    console.log(req.body);
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({
@@ -127,7 +126,7 @@ module.exports = {
         return res.status(201).json({
           //data는 일단 임시임.. 메인 페이지가 다시 렌더링 되면서 friends data를 다시 받게 됨.
           data: {
-            frineds_id: reqestToFriend.id,
+            frieneds_id: reqestToFriend.id,
             fUser_id: reqestToFriend.fUser_id,
           },
           message: "친구 요청이 완료됐습니다.",

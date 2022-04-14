@@ -93,7 +93,7 @@ module.exports = {
     //   return res
     //     .status(400)
     //     .json({ data: null, message: "잘못된 요청입니다." });
-
+    let latestPostTemp;
     postModel
       .create({
         goal,
@@ -107,17 +107,27 @@ module.exports = {
             .status(500)
             .json({ data: null, message: "create post fail" });
 
+        latestPostTemp = created.id;
         return userModel.update(
           { latestPostId: created.id },
           { where: { id: userInfo.id } }
         );
       })
-      .then((result) => {
+      .then(async (result) => {
         if (!result)
           return res
             .status(500)
             .json({ data: null, message: "lastestPostId update fail" });
-        res.status(201).json({ data: result, message: "ok" });
+
+        const latestPost = await postModel.findOne({
+          where: { id: latestPostTemp },
+        });
+
+        if (!latestPost)
+          return res
+            .status(203)
+            .json({ data: null, message: "저장은 됐으나, 불러오기 실패" });
+        res.status(201).json({ data: latestPost, message: "ok" });
       })
       .catch((err) =>
         res.status(500).json({ data: err, message: "server error" })
