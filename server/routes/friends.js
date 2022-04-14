@@ -1,8 +1,11 @@
 const router = require("express").Router();
-// const {accept, refuse, add} = require("../controllers/friends");
+const { accept, refuse, add, cancle } = require("../controllers/friends/index");
 
-// router.post("/accept", accept);
-// router.delete("/refuse", refuse);
-// router.post("/add", add);
+const { test } = require("../controllers/friends/test");
 
+router.post("/accept", accept);
+router.delete("/refuse/:friendTableId", refuse);
+router.post("/add", add);
+router.delete("/cancle/:id", cancle);
+// router.get("/test", test);
 module.exports = router;

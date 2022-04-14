@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const post = require("./post");
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -9,8 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // user.hasOne(models.friend);
-      // user.hasMany(models.post);
+      user.belongsTo(models.post, {
+        foreignKey: "latestPostId",
+      });
+      user.hasMany(models.post, {
+        foreignKey: "user_id",
+      });
+      user.hasMany(models.friend, {
+        foreignKey: "user_id",
+      });
+      user.hasMany(models.friend, {
+        foreignKey: "fUser_id",
+      });
     }
   }
   user.init(
@@ -26,11 +37,11 @@ module.exports = (sequelize, DataTypes) => {
       userNickName: DataTypes.STRING,
       userPassword: DataTypes.STRING,
       nowGoal: DataTypes.STRING,
-      latestPostId: DataTypes.INTEGER, //포린키
       authorization: {
         type: DataTypes.BOOLEAN,
         defaultValue: false, //기본값 설정
       },
+      salt: DataTypes.STRING,
     },
     {
       sequelize,

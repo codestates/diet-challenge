@@ -20,22 +20,22 @@ module.exports = {
       nowGoal: {
         type: Sequelize.STRING,
       },
-      latestPostId: {
-        type: Sequelize.INTEGER,
-      },
       authorization: {
         type: Sequelize.BOOLEAN,
         defaultValue: false, //기본값 설정
       },
+      salt: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"), //그때 그때 찍히게 설정
+        type: "TIMESTAMP",
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"), //그때 그때 찍히게 설정
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        type: "TIMESTAMP",
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
   },

@@ -12,23 +12,20 @@ module.exports = {
         type: Sequelize.STRING,
       },
       photo: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING,
       },
       content: {
         type: Sequelize.STRING(1234),
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        type: "TIMESTAMP",
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        type: "TIMESTAMP",
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
   },

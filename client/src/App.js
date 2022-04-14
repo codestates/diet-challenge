@@ -1,45 +1,43 @@
 import Main from "./pages/main";
 import Home from "./pages/home";
-import Signup from "./pages/signup";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setSwitch } from "./actions";
+
 import "./App.css";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     navigate("/");
   }, []);
 
-  const testfunction = () => {
-    console.log(isLogin);
+  const login = useSelector((state) => state.userreducer.isLogin);
+  const accessToken = useSelector((state) => state.userreducer.switch);
+
+  const testreduxfunction = () => {
+    dispatch(setSwitch());
+
+    console.log(accessToken);
+    // dispatch(test());
+    // console.log(reduxtest);
   };
 
   return (
     <div>
       <Routes>
-        <Route
-          path="/"
-          element={
-            isLogin ? (
-              <Home />
-            ) : (
-              <Main setIsLogin={setIsLogin} setAccessToken={setAccessToken} />
-            )
-          }
-        />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/*" element={login ? <Home /> : <Main />} />
       </Routes>
       <div>
-        <button className="test" type="butten" onClick={testfunction}>
-          로그인
+        <button className="test" type="butten" onClick={testreduxfunction}>
+          테스트
         </button>
-        <Link to="/signup">
+        <Link to="/createpost">
           <button className="test" type="butten">
-            회원가입
+            포스트1
           </button>
         </Link>
       </div>
