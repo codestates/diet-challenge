@@ -20,6 +20,7 @@ module.exports = {
   //   res.json({ data: { accessToken, userInfo: data }, message: "ok" });
   // },
   isAuthorized: (req) => {
+    console.log(req.headers);
     const authorization = req.headers["authorization"];
     if (!authorization) {
       return null;
