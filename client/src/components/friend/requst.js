@@ -59,13 +59,13 @@ export const Requst = ({ name, id, tableid }) => {
       <div class="btn-user">
         <button class="btn morph" onClick={handleaccept}>
           <i class="fas fa-user-plus"></i>
-          요청수락
+          요청 수락
           <div />
         </button>
         <button class="btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>
-          <div></div>
           요청 거절
+          <div></div>
         </button>
       </div>
     </div>

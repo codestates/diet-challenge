@@ -18,8 +18,7 @@ export const Friends = () => {
     <div className="app-body-side">
       <div className="side-wrpper">
         <div className="side-menu">
-          <Addfriend />
-          <div className="side-title">친구요청</div>
+          <Addfriend /> <div className="side-title">친구요청</div>
         </div>
 
         {requestfriend.map((el) => {

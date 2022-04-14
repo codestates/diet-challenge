@@ -56,7 +56,7 @@ export const Addfriend = () => {
     <div>
       <span className="member1">닉네임</span>
       <input class="btn morph active" type="text" onChange={handleInputValue} />
-      <i class="fas fa-search"></i>
+      <i class="fas fa-search"></i> 
       <button type="butten" class="btn morph" onClick={handleRequest}>
         <i class="fas fa-user-plus"></i>
         친구요청

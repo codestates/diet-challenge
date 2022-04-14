@@ -99,7 +99,7 @@ function Main() {
               <div id="top-banner" className="banner">
                 <div className="banner-inner-wrap">
                   <h2 className="main-header">
-                    <h1 className="main-header1">Diet challenge</h1>
+                    <h1 className="main-header3">Diet challenge</h1>
                     다이어트 n년차! 이번엔 성공하자 친구와 함께 기록을 공유하며
                     함께 성공해요
                   </h2>
