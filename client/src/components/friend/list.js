@@ -10,7 +10,7 @@ export const FriendList = ({ name, id }) => {
   const handledelete = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}/friends/cancle/친구의 users 테이블 id`, //파라미터로 받음.
+        `http://localhost:4000/friends/cancle/친구의_users_테이블_id`, //파라미터로 받음.
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

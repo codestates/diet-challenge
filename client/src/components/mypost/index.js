@@ -56,12 +56,12 @@ const CreatePost = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       };
-      axios
-        .post(`${process.env.REACT_APP_API_URL}/posts/create`, formdata, config)
+      axios //${process.env.REACT_APP_API_URL}
+        .post(`http://localhost:4000/posts/create`, formdata, config)
         .then((post) => {
-          const { goal, photo, content } = post.data.data;
+          // const { goal, photo, content } = post.data.data;
           // navigate("/");
-          console.log(goal, photo, content);
+          console.log(post);
         })
         .catch(() => {
           alert("err");

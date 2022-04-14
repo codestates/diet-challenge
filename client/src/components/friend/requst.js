@@ -10,7 +10,7 @@ export const Requst = ({ name, id }) => {
   const handledelete = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}/friends/refuse/{}`, //파라미터 사용(친구테이블 id)
+        `http://localhost:4000/friends/refuse/{}`, //파라미터 사용(친구테이블 id)
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -25,7 +25,7 @@ export const Requst = ({ name, id }) => {
   const handleaccept = () => {
     axios
       .post(
-        `${process.env.REACT_APP_API_URL}/friends/accept`,
+        `http://localhost:4000/friends/accept`,
         { friendTableId: id, friend_users_id: "" }, //메인페이지에서 전달받은 친구 정보중 친구테이블 id, 친구의 users 테이블 id
         {
           headers: {
