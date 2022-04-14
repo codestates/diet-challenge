@@ -10,6 +10,7 @@ import {
   CHANGENICKNAME,
   CHANGEGOAL,
   SETSWITCH,
+  SETLATEST,
 } from "../actions/index";
 
 const userreducer = (state = initialState, action) => {
@@ -64,6 +65,9 @@ const userreducer = (state = initialState, action) => {
 
     case SETSWITCH:
       return Object.assign({}, state, { switch: !state.switch });
+
+    case SETLATEST:
+      return Object.assign({}, state, { latest: action.payload.latest });
 
     default:
       return state;

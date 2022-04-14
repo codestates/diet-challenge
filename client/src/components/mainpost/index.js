@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 function MainPost() {
   const latest = useSelector((state) => state.userreducer.latest);
+  console.log(latest);
 
   return (
     <section className="popup popup-picture">

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setSwitch } from "../../actions/index";
 import { Modal } from "../modal";
+import { setLatest } from "../../actions";
 
 const CreatePost = () => {
   const [imageSrc, setImageSrc] = useState("");
@@ -59,8 +59,18 @@ const CreatePost = () => {
       axios
         .post(`${process.env.REACT_APP_API_URL}/posts/create`, formdata, config)
         .then((post) => {
+          console.log(post.data.data);
+          dispatch(
+            setLatest({
+              id: post.data.data.id,
+              img: post.data.data.photo,
+              info: post.data.data.content,
+              user_id: post.data.data.user_id,
+              createdAt: post.data.data.createdAt,
+              updatedAt: post.data.data.updatedAt,
+            })
+          );
           navigate("/");
-          dispatch(setSwitch());
         })
         .catch(() => {
           alert("err");
