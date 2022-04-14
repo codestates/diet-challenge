@@ -59,7 +59,9 @@ function Home() {
     <div className="video-app">
       <div className="header">
         <div className="header-left">
+          <div></div>
           <div className="logo-title">Diet challenge</div>
+          
         </div>
         <div className="header-menu">
           {authorization ? (
@@ -98,9 +100,7 @@ function Home() {
                   다이어트 n년차! 이번엔 성공하자 <br />
                   친구와 함께 기록을 공유하며 함께 성공해요
                 </h2>
-                See what's my activity
               </div>
-
               <Routes>
                 <Route path="/" element={<Body />} />
                 <Route path="/createpost" element={<CreatePost />} />

@@ -183,60 +183,57 @@ function Mypage() {
         });
     }
   };
-
+  
   return isChange ? (
-    <div className="mypageContainer">
-      <div className="wrap">
-        <div className="form-wrap" />
-
+    <div className="mypage-Container">
+      <div className="form-warp">
         <div>
-          <h1 className="item">Mypage</h1>
+        <h1 className="member2">My page</h1>
         </div>
-
-        <div className="item">
-          나의 비밀번호:{" "}
-          <input type="password" onChange={handlepassword1}></input>
+        <div className="item3">
+          나의 비밀번호 : {" "}
+          <input className="item4" type="password" onChange={handlepassword1}></input>
         </div>
-        <div className="item">
-          나의 비밀번호 확인:{" "}
-          <input type="password" onChange={handlepassword2}></input>
-          <button onClick={changepassword}>정보 수정</button>
+        <div className="item3">
+          나의 비밀번호 확인 : {" "}
+          <input className="item4" type="password" onChange={handlepassword2}></input>
+          <button className="item4" onClick={changepassword}> 정보 수정</button>
         </div>
-        <div className="item">
-          나의 닉네임: <input type="text" onChange={handlenickname}></input>
-          <button onClick={changenickname}>정보 수정</button>
+        <div className="item3">
+          나의 닉네임 : <input className="item4" type="text" onChange={handlenickname}></input>
+          <button className="item4" onClick={changenickname}> 정보 수정</button>
         </div>
-        <div className="item">
-          나의 목표: <input type="text" onChange={handlegoal}></input>
-          <button onClick={changegoal}>정보 수정</button>
+        <div className="item3">
+          나의 목표 : <input className="item4" type="text" onChange={handlegoal}></input>
+          <button className="item4" onClick={changegoal}> 정보 수정</button>    <button className="item4"onClick={handleChange}>수정완료</button>
         </div>
-        <button onClick={handleChange}>수정완료</button>
       </div>
       <Modal open={modalOpen} close={closeModal}>
         {alertmessage}
       </Modal>
     </div>
   ) : (
-    <div className="mypageContainer">
-      <div className="wrap">
-        <div className="form-wrap">
-          <div className="bottom">
-            <h1 className="item">Mypage</h1>
+    <div className="mypage-Container">
+      <div className="form-warp">
+        <div>
+            <h1 className="member2">My page</h1>
           </div>
-          <div className="item1">나의 id: {userinfo.userId}</div>
-          <div className="item1">나의 닉네임: {userinfo.userNickName}</div>
-          <div className="item1">나의 목표: {userinfo.nowGoal}</div>
-          <button onClick={handleChange}>정보 수정</button>
-          <div className="item">
+          <div className="item3">나의 id: {userinfo.userId}</div>
+          <div className="item3">나의 닉네임: {userinfo.userNickName}</div>
+          <div className="item3">나의 목표: {userinfo.nowGoal}     <button className="item5" onClick={handleChange}>정보 수정</button>
+          </div> 
+          <div className="item3">
             회원 탈퇴 확인: <input type="text" onChange={handledelete}></input>
-          </div>
           <button onClick={deleteid}>회원탈퇴</button>
+          
+          </div>
           <Modal open={modalOpen} close={closeModal}>
             {alertmessage}
           </Modal>
         </div>
-      </div>
-    </div>
+        </div>
+     
+ 
   );
 }
 export default Mypage;
