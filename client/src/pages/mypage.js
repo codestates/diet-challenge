@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "../components/modal";
-import { setMainPage, setLogin, setAccessToken } from "../actions/index";
+import {
+  setchangenickname,
+  setchangegoal,
+  setLogin,
+  setAccessToken,
+} from "../actions/index";
 import { useNavigate } from "react-router-dom";
 
 function Mypage() {
@@ -17,7 +22,7 @@ function Mypage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userinfo = useSelector((state) => state.userreducer.userinfo);
+  const userinfo = useSelector((state) => state.userreducer.userInfo);
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const openModal = () => {
@@ -97,13 +102,14 @@ function Mypage() {
           }
         )
         .then(() => {
-          dispatch(
-            setMainPage({
-              userinfo: {
-                usernickname: nickname,
-              },
-            })
-          );
+          dispatch(setchangenickname(nickname));
+          // dispatch(
+          //   setMainPage({
+          //     userInfo: {
+          //       usernickname: nickname,
+          //     },
+          //   })
+          // );
           setalertmessage("닉네임이 변경됐습니다");
           openModal();
         })
@@ -132,13 +138,14 @@ function Mypage() {
           }
         )
         .then(() => {
-          dispatch(
-            setMainPage({
-              userinfo: {
-                goal: goal,
-              },
-            })
-          );
+          // dispatch(
+          //   setMainPage({
+          //     userInfo: {
+          //       nowGoal: goal,
+          //     },
+          //   })
+          // );
+          dispatch(setchangegoal(goal));
           setalertmessage("목표가 변경됐습니다");
           openModal();
         })
@@ -216,9 +223,9 @@ function Mypage() {
           <div className="bottom">
             <h1 className="item">Mypage</h1>
           </div>
-          <div className="item1">나의 id: {userinfo.userid}</div>
-          <div className="item1">나의 닉네임: {userinfo.usernickname}</div>
-          <div className="item1">나의 목표: {userinfo.goal}</div>
+          <div className="item1">나의 id: {userinfo.userId}</div>
+          <div className="item1">나의 닉네임: {userinfo.userNickName}</div>
+          <div className="item1">나의 목표: {userinfo.nowGoal}</div>
           <button onClick={handleChange}>정보 수정</button>
           <div className="item">
             회원 탈퇴 확인: <input type="text" onChange={handledelete}></input>

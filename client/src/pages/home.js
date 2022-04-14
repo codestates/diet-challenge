@@ -20,18 +20,17 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   const accessToken = useSelector((state) => state.userreducer.accessToken);
-  const reduxtest = useSelector((state) => state.userreducer.test);
+  const renderswitch = useSelector((state) => state.userreducer.switch);
   const initialState = useSelector((state) => state.userreducer);
-  const img = useSelector((state) => state.userreducer.img);
   const authorization = useSelector(
-    (state) => state.userreducer.userinfo.authorization
+    (state) => state.userreducer.userInfo.authorization
   );
 
   useEffect(() => {
     setIsLoading(true);
 
     axios
-      .get(`${process.env.REACT_APP_API_URL}`, {
+      .get(`${process.env.REACT_APP_API_URL}/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -39,7 +38,6 @@ function Home() {
         withCredentials: true,
       })
       .then((data) => {
-        console.log(data.data.data);
         dispatch(setMainPage(data.data.data));
       })
       .catch(() => {
@@ -47,16 +45,12 @@ function Home() {
       });
 
     setIsLoading(false);
-  }, []);
+  }, [renderswitch]);
 
   const Logout = () => {
     dispatch(setLogin());
     dispatch(setAccessToken(""));
     navigate("/");
-  };
-
-  const testfunction = () => {
-    console.log(img);
   };
 
   return isLoading ? (
@@ -105,8 +99,6 @@ function Home() {
                   친구와 함께 기록을 공유하며 함께 성공해요
                 </h2>
                 See what's my activity
-                {img && <img src={img} alt="preview-img" />}{" "}
-                <button onClick={testfunction}>테스트</button>
               </div>
 
               <Routes>
