@@ -9,7 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // friend.hasOne(models.user);
+      friend.belongsTo(models.user, {
+        foreignKey: "user_id",
+      });
+      friend.belongsTo(models.user, {
+        foreignKey: "fUser_id",
+      });
     }
   }
   friend.init(
@@ -20,8 +25,6 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      user_id: DataTypes.INTEGER,
-      fUser_id: DataTypes.INTEGER,
       request: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
