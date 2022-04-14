@@ -1,11 +1,15 @@
 const { user: userModel } = require("../../models");
+const { post: postModel } = require("../../models");
+const { friend: friendModel } = require("../../models");
+
 const { Op } = require("sequelize");
 const { generateAccessToken, isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
   login: async (req, res) => {
+    console.log(req.body);
     const { userId, userPassword } = req.body;
-    
+
     try {
       const userInfo = await userModel.findOne({
         where: { userId, userPassword },
@@ -18,7 +22,6 @@ module.exports = {
       }
 
       delete userInfo.dataValues.userPassword;
-      // console.log(userInfo);
       const accessToken = generateAccessToken(userInfo.dataValues);
 
       if (accessToken) {

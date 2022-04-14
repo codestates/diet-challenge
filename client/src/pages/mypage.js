@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "../components/modal";
-import { setMainPage } from "../actions/index";
+import { setMainPage, setLogin, setAccessToken } from "../actions/index";
+import { useNavigate } from "react-router-dom";
 
 function Mypage() {
   const [isChange, setIsChange] = useState(false);
@@ -12,9 +13,12 @@ function Mypage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [nickname, setnickname] = useState("");
   const [goal, setgoal] = useState("");
+  const [deletetext, setdeletetext] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userinfo = useSelector((state) => state.userreducer.userinfo);
+  const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const openModal = () => {
     setModalOpen(true);
@@ -38,6 +42,9 @@ function Mypage() {
   const handlegoal = (e) => {
     setgoal(e.target.value);
   };
+  const handledelete = (e) => {
+    setdeletetext(e.target.value);
+  };
 
   const changepassword = () => {
     if (password1 === "" || password2 === "") {
@@ -54,7 +61,12 @@ function Mypage() {
         .post(
           `${process.env.REACT_APP_API_URL}/change/password`,
           { userpassword: password1 },
-          { "Content-Type": "application/json" }
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            "Content-Type": "application/json",
+          }
         )
         .then(() => {
           setalertmessage("비밀번호가 변경되었습니다");
@@ -77,7 +89,12 @@ function Mypage() {
         .post(
           `${process.env.REACT_APP_API_URL}/change/nickname`,
           { usernickname: nickname },
-          { "Content-Type": "application/json" }
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            "Content-Type": "application/json",
+          }
         )
         .then(() => {
           dispatch(
@@ -107,7 +124,12 @@ function Mypage() {
         .post(
           `${process.env.REACT_APP_API_URL}/change/goal`,
           { goal: goal },
-          { "Content-Type": "application/json" }
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            "Content-Type": "application/json",
+          }
         )
         .then(() => {
           dispatch(
@@ -127,11 +149,39 @@ function Mypage() {
     }
   };
 
+  const deleteid = () => {
+    console.log(accessToken);
+    if (deletetext !== "회원탈퇴") {
+      setalertmessage("입력창에 회원탈퇴 를 입력 해 주세요");
+      openModal();
+    } else {
+      axios
+        .delete(
+          `${process.env.REACT_APP_API_URL}/users/withdrawal`,
+
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            "Content-Type": "application/json",
+            withCredentials: true,
+          }
+        )
+        .then(() => {
+          dispatch(setLogin());
+          navigate("/");
+        })
+        .catch(() => {
+          alert("오류");
+        });
+    }
+  };
+
   return isChange ? (
-      <div className="mypageContainer">
-    <div className="wrap">
-    <div className="form-wrap"/>
-     
+    <div className="mypageContainer">
+      <div className="wrap">
+        <div className="form-wrap" />
+
         <div>
           <h1 className="item">Mypage</h1>
         </div>
@@ -162,16 +212,23 @@ function Mypage() {
   ) : (
     <div className="mypageContainer">
       <div className="wrap">
-      <div className="form-wrap">
-      <div className="bottom">
-        <h1 className="item">Mypage</h1>
+        <div className="form-wrap">
+          <div className="bottom">
+            <h1 className="item">Mypage</h1>
+          </div>
+          <div className="item1">나의 id: {userinfo.userid}</div>
+          <div className="item1">나의 닉네임: {userinfo.usernickname}</div>
+          <div className="item1">나의 목표: {userinfo.goal}</div>
+          <button onClick={handleChange}>정보 수정</button>
+          <div className="item">
+            회원 탈퇴 확인: <input type="text" onChange={handledelete}></input>
+          </div>
+          <button onClick={deleteid}>회원탈퇴</button>
+          <Modal open={modalOpen} close={closeModal}>
+            {alertmessage}
+          </Modal>
+        </div>
       </div>
-      <div className="item1">나의 id: {userinfo.userid}</div>
-      <div className="item1">나의 닉네임: {userinfo.usernickname}</div>
-      <div className="item1">나의 목표: {userinfo.goal}</div>
-      <button onClick={handleChange}>정보 수정</button>
-    </div>
-    </div>
     </div>
   );
 }

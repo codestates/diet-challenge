@@ -1,15 +1,21 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Requst = ({ name, id }) => {
   const navigate = useNavigate();
+  const accessToken = useSelector((state) => state.userreducer.accessToken);
+
   const handledelete = () => {
     axios
       .delete(
         `${process.env.REACT_APP_API_URL}/friends/refuse`,
         { friendId: id },
         {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
           "Content-Type": "application/json",
           withCredentials: true,
         }
@@ -23,6 +29,9 @@ export const Requst = ({ name, id }) => {
         `${process.env.REACT_APP_API_URL}/friends/accept`,
         { friendId: id },
         {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
           "Content-Type": "application/json",
           withCredentials: true,
         }
@@ -43,7 +52,7 @@ export const Requst = ({ name, id }) => {
         <button class="btn morph" onClick={handleaccept}>
           <i class="fas fa-user-plus"></i>
           요청수락
-        <div />
+          <div />
         </button>
         <button class="btn morph" onClick={handledelete}>
           <i class="fas fa-user-plus"></i>

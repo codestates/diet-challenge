@@ -30,12 +30,12 @@ export const Addfriend = () => {
         .post(
           `${process.env.REACT_APP_API_URL}/friends/add`,
           {
-            friendNickname: nickname,
+            userNickName: nickname,
+          },
+          {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
-          },
-          {
             "Content-Type": "application/json",
             withCredentials: true,
           }

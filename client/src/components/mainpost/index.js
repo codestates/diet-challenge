@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function MainPost() {
+  const latest = useSelector((state) => state.userreducer.latest);
+
   return (
     <section className="popup popup-picture">
         <Link to="/createpost">
