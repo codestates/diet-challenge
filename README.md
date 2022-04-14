@@ -21,7 +21,7 @@
 # STACK
 
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/Redux-#764ABC?style=for-the-badge&logo=Redux&logoColor=white%22%3E>
+<img src="https://img.shields.io/badge/Redux-#764ABC?style=flat&logo=redux>
 
 
 ***
