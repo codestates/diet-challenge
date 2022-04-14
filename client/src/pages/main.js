@@ -37,8 +37,8 @@ function Main() {
       setalertmessage("아이디와 비밀번호를 입력해주세요.");
       openModal();
     } else {
-      axios
-        .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
+      axios //${process.env.REACT_APP_API_URL}
+        .post(`http://localhost:4000/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
@@ -69,7 +69,6 @@ function Main() {
         </div>
         <span className="header-menu1">
           아이디 <input type="id" onChange={handleInputValue("userId")} />
-          
           <div></div>
         </span>
         <span className="header-menu1">비밀번호</span>
@@ -101,9 +100,9 @@ function Main() {
                 <div className="banner-inner-wrap">
                   <h2 className="main-header">
                     <h1 className="main-header1">Diet challenge</h1>
-                    다이어트 n년차! 이번엔 성공하자 
-                    친구와 함께 기록을 공유하며 함께 성공해요
-                    </h2>
+                    다이어트 n년차! 이번엔 성공하자 친구와 함께 기록을 공유하며
+                    함께 성공해요
+                  </h2>
                 </div>
 
                 <Routes>
