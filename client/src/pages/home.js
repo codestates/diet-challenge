@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Friends } from "../components/friend/index";
 import axios from "axios";
@@ -6,8 +6,10 @@ import { setAccessToken, setLogin, setMainPage, test } from "../actions/index";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import Body from "../components/body";
 import Mypage from "../pages/mypage";
+import Admin from "./admin";
 import CreatePost from "../components/mypost";
 import Myposts from "../components/myposts";
+import Loading from "../components/loading";
 
 axios.defaults.withCredentials = true;
 
@@ -15,12 +17,19 @@ function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const accessToken = useSelector((state) => state.userreducer.accessToken);
   const reduxtest = useSelector((state) => state.userreducer.test);
   const initialState = useSelector((state) => state.userreducer);
   const img = useSelector((state) => state.userreducer.img);
+  const authorization = useSelector(
+    (state) => state.userreducer.userinfo.authorization
+  );
 
   useEffect(() => {
+    setIsLoading(true);
+
     axios
       .get(
         `${process.env.REACT_APP_API_URL}/`,
@@ -40,6 +49,8 @@ function Home() {
       .catch(() => {
         console.log("error");
       });
+
+    setIsLoading(false);
   }, []);
 
   const Logout = () => {
@@ -52,13 +63,20 @@ function Home() {
     console.log(img);
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="video-app">
       <div className="header">
         <div className="header-left">
           <div className="logo-title">Diet challenge</div>
         </div>
         <div className="header-menu">
+          {authorization ? (
+            <Link to="/admin">
+              <div className="header-menu">Admin</div>
+            </Link>
+          ) : null}
           <Link to="/">
             <div className="header-menu1">Home</div>
           </Link>
@@ -100,6 +118,7 @@ function Home() {
                 <Route path="/createpost" element={<CreatePost />} />
                 <Route path="/mypage" element={<Mypage />} />
                 <Route path="/mypost" element={<Myposts />} />
+                <Route path="/admin" element={<Admin />} />
               </Routes>
             </div>
           </div>

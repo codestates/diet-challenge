@@ -41,7 +41,8 @@ export const Addfriend = () => {
           }
         )
         .then((data) => {
-          setalertmessage("친구 요청이 완료됐습니다.");
+          //setalertmessage("친구 요청이 완료됐습니다.");
+          setalertmessage(data.data.message); //수정
           openModal();
         })
         .catch(() => {

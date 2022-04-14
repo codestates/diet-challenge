@@ -1,6 +1,12 @@
 const router = require("express").Router();
-const controller = require("../controllers/mypage/infochange");
+const {
+  pwdChange,
+  nickNameChange,
+  goalChange,
+} = require("../controllers/mypage");
 
-router.patch("/infochange", controller);
+router.post("/password", pwdChange);
+router.post("/nickname", nickNameChange);
+router.post("/goal", goalChange);
 
 module.exports = router;

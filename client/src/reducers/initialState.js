@@ -6,6 +6,7 @@ export const initialState = {
     userid: "kimcoding",
     usernickname: "김코딩",
     goal: "1주일에 3kg감량",
+    authorization: false,
   },
   latest: { goal: "", info: "", img: "" },
   friendslatest: [
