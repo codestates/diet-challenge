@@ -31,17 +31,13 @@ function Home() {
     setIsLoading(true);
 
     axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          "Content-Type": "application/json",
-          withCredentials: true,
-        }
-      )
+      .get(`${process.env.REACT_APP_API_URL}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        "Content-Type": "application/json",
+        withCredentials: true,
+      })
       .then((data) => {
         console.log(data.data.data);
         dispatch(setMainPage(data.data.data));
