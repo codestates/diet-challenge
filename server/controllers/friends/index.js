@@ -12,14 +12,14 @@ module.exports = {
         message: "invalid access token",
       });
 
-    const { friends_id, friend_users_id } = req.body;
-    if (!friends_id || !friend_users_id)
+    const { friendTableId, friend_users_id } = req.body;
+    if (!friendTableId || !friend_users_id)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
 
     friendModel
-      .update({ request: true }, { where: { id: friends_id } })
+      .update({ request: true }, { where: { id: friendTableId } })
       .then((result) => {
         if (result[0]) {
           //update 메소드의 리턴값은 [업데이트된 row의 수]임.
@@ -51,14 +51,14 @@ module.exports = {
         message: "invalid access token",
       });
 
-    const { friends_id } = req.params;
-    if (!friends_id)
+    const { friendTableId } = req.params;
+    if (!friendTableId)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
 
     friendModel
-      .destroy({ where: { id: friends_id } })
+      .destroy({ where: { id: friendTableId } })
       .then((result) => {
         if (!result)
           return res.status(500).json({ data: null, message: "fail" });
@@ -147,7 +147,7 @@ module.exports = {
       });
 
     const me = userInfo.id;
-    const { friend } = req.query;
+    const { id: friend } = req.params;
 
     if (!friend)
       return res
