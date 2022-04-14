@@ -24,24 +24,20 @@ function Home() {
   const initialState = useSelector((state) => state.userreducer);
   const img = useSelector((state) => state.userreducer.img);
   const authorization = useSelector(
-    (state) => state.userreducer.userinfo.authorization
+    (state) => state.userreducer.userInfo.authorization
   );
 
   useEffect(() => {
     setIsLoading(true);
 
     axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          "Content-Type": "application/json",
-          withCredentials: true,
-        }
-      )
+      .get(`${process.env.REACT_APP_API_URL}/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        "Content-Type": "application/json",
+        withCredentials: true,
+      })
       .then((data) => {
         console.log(data.data.data);
         dispatch(setMainPage(data.data.data));

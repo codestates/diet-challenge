@@ -3,6 +3,8 @@ export const SETLOGIN = "SETLOGIN";
 export const SETACCESSTOKEN = "SETACCESSTOKEN";
 export const SETMAINPAGE = "SETMAINPAGE";
 export const SETIMG = "SETIMG";
+export const DELETEFRIEND = "DELETEFRIEND";
+export const ACCEPTFRIEND = "ACCEPTFRIEND";
 
 export const test = () => {
   return {
@@ -37,6 +39,22 @@ export const setImg = (img) => {
     type: SETIMG,
     payload: {
       img: img,
+    },
+  };
+};
+export const deletefriend = (id) => {
+  return {
+    type: DELETEFRIEND,
+    payload: {
+      friendId: id,
+    },
+  };
+};
+export const acceptfriend = (id) => {
+  return {
+    type: ACCEPTFRIEND,
+    payload: {
+      friendId: id,
     },
   };
 };

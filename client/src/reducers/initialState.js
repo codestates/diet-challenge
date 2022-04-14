@@ -1,11 +1,12 @@
 export const initialState = {
   isLogin: false,
   accessToken: "dummyaccesstoken",
-  userinfo: {
+  userInfo: {
     id: "1",
-    userid: "kimcoding",
+    userId: "kimcoding",
     usernickname: "김코딩",
-    goal: "1주일에 3kg감량",
+    nowGoal: "1주일에 3kg감량",
+    latestPostId: null,
     authorization: false,
   },
   latest: { goal: "", info: "", img: "" },

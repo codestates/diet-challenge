@@ -17,7 +17,7 @@ function Mypage() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userinfo = useSelector((state) => state.userreducer.userinfo);
+  const userinfo = useSelector((state) => state.userreducer.userInfo);
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const openModal = () => {
@@ -88,7 +88,7 @@ function Mypage() {
       axios
         .post(
           `${process.env.REACT_APP_API_URL}/change/nickname`,
-          { usernickname: nickname },
+          { userNickName: nickname },
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -99,8 +99,8 @@ function Mypage() {
         .then(() => {
           dispatch(
             setMainPage({
-              userinfo: {
-                usernickname: nickname,
+              userInfo: {
+                userNickName: nickname,
               },
             })
           );
@@ -123,7 +123,7 @@ function Mypage() {
       axios
         .post(
           `${process.env.REACT_APP_API_URL}/change/goal`,
-          { goal: goal },
+          { nowGoal: goal },
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -134,8 +134,8 @@ function Mypage() {
         .then(() => {
           dispatch(
             setMainPage({
-              userinfo: {
-                goal: goal,
+              userInfo: {
+                nowGoal: goal,
               },
             })
           );
@@ -216,9 +216,9 @@ function Mypage() {
           <div className="bottom">
             <h1 className="item">Mypage</h1>
           </div>
-          <div className="item1">나의 id: {userinfo.userid}</div>
-          <div className="item1">나의 닉네임: {userinfo.usernickname}</div>
-          <div className="item1">나의 목표: {userinfo.goal}</div>
+          <div className="item1">나의 id: {userinfo.userId}</div>
+          <div className="item1">나의 닉네임: {userinfo.userNickName}</div>
+          <div className="item1">나의 목표: {userinfo.nowGoal}</div>
           <button onClick={handleChange}>정보 수정</button>
           <div className="item">
             회원 탈퇴 확인: <input type="text" onChange={handledelete}></input>

@@ -5,6 +5,8 @@ import {
   SETACCESSTOKEN,
   SETMAINPAGE,
   SETIMG,
+  DELETEFRIEND,
+  ACCEPTFRIEND,
 } from "../actions/index";
 
 const userreducer = (state = initialState, action) => {
@@ -25,6 +27,23 @@ const userreducer = (state = initialState, action) => {
 
     case SETIMG:
       return Object.assign({}, state, { img: action.payload.img });
+
+    case DELETEFRIEND:
+      return Object.assign({}, state, {
+        friends: state.friends.filter((el) => {
+          return el.friendId !== action.payload.friendId;
+        }),
+      });
+
+    case ACCEPTFRIEND:
+      return Object.assign({}, state, {
+        friends: state.friends.map((el) => {
+          if (el.friendId === action.payload.friendId) {
+            el.request = 1;
+          }
+          return el;
+        }),
+      });
 
     default:
       return state;

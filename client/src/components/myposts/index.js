@@ -40,17 +40,13 @@ function MyPosts() {
 
   useEffect(() => {
     axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/posts?offset=${offset}&limit=6`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          "Content-Type": "application/json",
-          withCredentials: true,
-        }
-      )
+      .get(`${process.env.REACT_APP_API_URL}/posts?offset=${offset}&limit=6`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        "Content-Type": "application/json",
+        withCredentials: true,
+      })
       .then((data) => {
         setposts(data.data.data.posts);
         sethasnext(data.data.data.hasnext);

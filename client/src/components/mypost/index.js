@@ -22,7 +22,7 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const goal = useSelector((state) => state.userreducer.userinfo.goal);
+  const goal = useSelector((state) => state.userreducer.userInfo.nowGoal);
   const accessToken = useSelector((state) => state.userreducer.accessToken);
 
   const encodeFileToBase64 = (fileBlob) => {
@@ -59,9 +59,7 @@ const CreatePost = () => {
       axios
         .post(`${process.env.REACT_APP_API_URL}/posts/create`, formdata, config)
         .then((post) => {
-          const { goal, photo, content } = post.data.data;
-          // navigate("/");
-          console.log(goal, photo, content);
+          navigate("/");
         })
         .catch(() => {
           alert("err");
