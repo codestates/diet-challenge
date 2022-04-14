@@ -26,9 +26,9 @@ export const Addfriend = () => {
       setalertmessage("닉네임을 입력해 주세요");
       openModal();
     } else {
-      axios
+      axios //${process.env.REACT_APP_API_URL}
         .post(
-          `${process.env.REACT_APP_API_URL}/friends/add`,
+          `http://localhost:4000/friends/add`,
           {
             userNickName: nickname,
           },

@@ -37,8 +37,8 @@ function Main() {
       setalertmessage("아이디와 비밀번호를 입력해주세요.");
       openModal();
     } else {
-      axios //${process.env.REACT_APP_API_URL}
-        .post(`http://localhost:4000/users/login`, userinfo, {
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
         })
