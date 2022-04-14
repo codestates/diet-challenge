@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const post = require("./post");
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -10,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // user.hasOne(models.friend);
-      // user.hasMany(models.post);
     }
   }
   user.init(

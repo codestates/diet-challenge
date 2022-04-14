@@ -43,4 +43,30 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//관계 설정
+const { user, post, friend } = db;
+//post(user_id) -> user(id) = 1: N
+user.hasMany(post, {
+  foreignKey: "user_id",
+});
+post.belongsTo(user);
+
+//user(latestPostId) -> post(id) = 1: 1
+post.hasOne(user, {
+  foreignKey: "latestPostId",
+});
+user.belongsTo(post);
+
+//friend(user_id) -> user(id) = N : 1
+user.hasMany(friend, {
+  foreignKey: "user_id",
+});
+friend.belongsTo(user);
+
+//friend(fUser_id) -> user(id) = N : 1
+user.hasMany(friend, {
+  foreignKey: "fUser_id",
+});
+friend.belongsTo(user);
+
 module.exports = db;
