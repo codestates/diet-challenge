@@ -8,6 +8,7 @@ export const ACCEPTFRIEND = "ACCEPTFRIEND";
 export const CHANGENICKNAME = "CHANGENICKNAME";
 export const CHANGEGOAL = "CHANGEGOAL";
 export const SETSWITCH = "SETSWITCH";
+export const SETLATEST = "SETLATEST";
 
 export const test = () => {
   return {
@@ -81,5 +82,13 @@ export const setchangegoal = (goal) => {
 export const setSwitch = () => {
   return {
     type: SETSWITCH,
+  };
+};
+export const setLatest = (data) => {
+  return {
+    type: SETLATEST,
+    payload: {
+      latest: data,
+    },
   };
 };
