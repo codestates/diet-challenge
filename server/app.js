@@ -8,6 +8,7 @@ const indexRouter = require("./routes"); //메인
 const userRouter = require("./routes/users");
 const friendRouter = require("./routes/friends");
 const postRouter = require("./routes/posts");
+const mypageRouter = require("./routes/mypage");
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/friends", friendRouter);
 app.use("/posts", postRouter);
+app.use("/change", mypageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
