@@ -61,18 +61,18 @@ function Main() {
         </div>
         <div className="header-menu">
           <Link to="/">
-            <div className="header-menu">Home</div>
+            <div className="header-menu2">Home</div>
           </Link>
           <Link to="/signup">
-            <div className="header-menu">회원가입</div>
+            <div className="header-menu2">회원가입</div>
           </Link>
         </div>
-        <span>
-          아이디
-          <input type="id" onChange={handleInputValue("userId")} />
+        <span className="header-menu1">
+          아이디 <input type="id" onChange={handleInputValue("userId")} />
+          
           <div></div>
         </span>
-        <span>비밀번호</span>
+        <span className="header-menu1">비밀번호</span>
         <div></div>
         <input type="password" onChange={handleInputValue("userPassword")} />
         <button type="button" onClick={handleLogin}>
@@ -98,12 +98,12 @@ function Main() {
           <div className="body-title">
             <div className="body-menu">
               <div id="top-banner" className="banner">
-                <div className="banner-inner-wrapper">
+                <div className="banner-inner-wrap">
                   <h2 className="main-header">
                     <h1 className="main-header1">Diet challenge</h1>
-                    다이어트 n년차! 이번엔 성공하자 <br />
+                    다이어트 n년차! 이번엔 성공하자 
                     친구와 함께 기록을 공유하며 함께 성공해요
-                  </h2>
+                    </h2>
                 </div>
 
                 <Routes>

@@ -58,15 +58,15 @@ function Home() {
         </div>
         <div className="header-menu">
           <Link to="/">
-            <div className="header-menu">Home</div>
+            <div className="header-menu1">Home</div>
           </Link>
           <Link to="/mypost">
-            <div className="header-menu">My posts</div>
+            <div className="header-menu1">My posts</div>
           </Link>
           <Link to="/mypage">
-            <div className="header-menu">mypage</div>
+            <div className="header-menu1">mypage</div>
           </Link>
-          <div className="header-menu" onClick={Logout}>
+          <div className="header-menu1" onClick={Logout}>
             Log out
           </div>
         </div>
@@ -80,8 +80,6 @@ function Home() {
               <div className="side-title">친구요청</div>
               <div className="search">
                 <div className="btn">
-                  <div class="search"></div>
-                  <i class="fas fa-search"></i>
                 </div>
               </div>
             </div>
@@ -95,30 +93,38 @@ function Home() {
         </div>
 
         <div className="wrap">
-          <div className="body">
-              <div className="body-menu">
+          <div className="body-container">
+            <div></div>
+               <div className="body-menu">
                 <div id="top-banner" className="banner">
-                    <h1 className="main-header1">Diet challenge</h1>
-                    <h2 className="main-header">
-                      다이어트 n년차! 이번엔 성공하자 <br />
-                      친구와 함께 기록을 공유하며 함께 성공해요
+                    <h1 className="home-header">Diet challenge</h1>
+                    <h2 className="home-header1">
+                    다이어트 n년차! 이번엔 성공하자 
+                    친구와 함께 기록을 공유하며 함께 성공해요
                     </h2>
-                    See what's my activity
-                    {img && <img src={img} alt="preview-img" />}{" "}
+                    <p className="member1">See what's my activity
+                    {img && <img class="profile"src={img} alt="profile-cover" />}{" "}
                     <button onClick={testfunction}>테스트</button>
-                  </div>
-
                   <Routes>
                     <Route path="/" element={<Body />} />
                     <Route path="/createpost" element={<CreatePost />} />
                     <Route path="/mypage" element={<Mypage />} />
                     <Route path="/mypost" element={<Myposts />} />
                   </Routes>
+                      </p>
+                    </div>
+                  
+                    </div>
+                  <div className="footer">
+                  <div className="footer-wrap">
+                  </div>
+                  </div>
+                  </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            
+       
    
 
   );

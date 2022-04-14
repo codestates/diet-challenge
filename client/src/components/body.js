@@ -5,9 +5,19 @@ import MainPost from "./mainpost";
 function Body() {
   return (
     <div className="gallery">
+      <div className="profile">
+      <div className="profile-cover">
+        
+         <div className="profile-avatar">
         <MainPost />
-      <FriendPost />
-    </div>
+         </div>
+        <div className="main-container">
+          </div>
+          </div>
+          </div>
+              <FriendPost />
+          </div>
+   
   );
 }
 export default Body;
