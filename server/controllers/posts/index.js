@@ -122,7 +122,6 @@ module.exports = {
         const latestPost = await postModel.findOne({
           where: { id: latestPostTemp },
         });
-
         if (!latestPost)
           return res
             .status(203)

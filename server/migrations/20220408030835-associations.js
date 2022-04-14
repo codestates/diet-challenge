@@ -5,7 +5,7 @@
 //     await queryInterface.addConstraint("friends", {
 //       fields: ["user_id"],
 //       type: "foreign key",
-//       name: "friend_user_reference_1",
+//       name: "user_id",
 //       references: {
 //         table: "users",
 //         field: "id",
@@ -15,7 +15,7 @@
 //     await queryInterface.addConstraint("friends", {
 //       fields: ["fUser_id"],
 //       type: "foreign key",
-//       name: "friend_user_reference_2",
+//       name: "fUser_id",
 //       references: {
 //         table: "users",
 //         field: "id",
@@ -25,7 +25,7 @@
 //     await queryInterface.addConstraint("users", {
 //       fields: ["latestPostId"],
 //       type: "foreign key",
-//       name: "user_post_reference_1",
+//       name: "latestPostId",
 //       references: {
 //         table: "posts",
 //         field: "id",
@@ -35,7 +35,7 @@
 //     await queryInterface.addConstraint("posts", {
 //       fields: ["user_id"],
 //       type: "foreign key",
-//       name: "post_user_reference_1",
+//       name: "user_id",
 //       references: {
 //         table: "users",
 //         field: "id",
@@ -47,7 +47,7 @@
 //     await queryInterface.removeConstraint("friends", {
 //       fields: ["user_id"],
 //       type: "foreign key",
-//       name: "friend_user_reference_1",
+//       name: "user_id",
 //       references: {
 //         table: "users",
 //         field: "id",
@@ -57,7 +57,7 @@
 //     await queryInterface.removeConstraint("friends", {
 //       fields: ["fUser_id"],
 //       type: "foreign key",
-//       name: "friend_user_reference_2",
+//       name: "fUser_id",
 //       references: {
 //         table: "users",
 //         field: "id",
@@ -67,7 +67,7 @@
 //     await queryInterface.removeConstraint("users", {
 //       fields: ["latestPostId"],
 //       type: "foreign key",
-//       name: "user_post_reference_1",
+//       name: "latestPostId",
 //       references: {
 //         table: "posts",
 //         field: "id",
@@ -77,7 +77,7 @@
 //     await queryInterface.removeConstraint("posts", {
 //       fields: ["user_id"],
 //       type: "foreign key",
-//       name: "post_user_reference_1",
+//       name: "user_id",
 //       references: {
 //         table: "users",
 //         field: "id",
