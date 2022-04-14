@@ -78,15 +78,15 @@ function Home() {
             </Link>
           ) : null}
           <Link to="/">
-            <div className="header-menu">Home</div>
+            <div className="header-menu1">Home</div>
           </Link>
           <Link to="/mypost">
-            <div className="header-menu">My posts</div>
+            <div className="header-menu1">My posts</div>
           </Link>
           <Link to="/mypage">
-            <div className="header-menu">mypage</div>
+            <div className="header-menu1">mypage</div>
           </Link>
-          <div className="header-menu" onClick={Logout}>
+          <div className="header-menu1" onClick={Logout}>
             Log out
           </div>
         </div>
