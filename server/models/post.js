@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      post.belongsTo(models.user, {
+        foreignKey: "user_id",
+      });
+      post.hasOne(models.user, {
+        foreignKey: "latestPostId",
+      });
     }
   }
   post.init(
@@ -22,7 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       goal: DataTypes.STRING,
       photo: DataTypes.STRING,
       content: DataTypes.STRING(1234),
-      user_id: DataTypes.INTEGER,
     },
     {
       sequelize,

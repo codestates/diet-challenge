@@ -43,7 +43,7 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// //관계 설정
+//관계 설정
 // const { user, post, friend } = db;
 // //post(user_id) -> user(id) = 1: N
 // user.hasMany(post);

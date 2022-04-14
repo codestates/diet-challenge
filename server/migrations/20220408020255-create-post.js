@@ -17,9 +17,6 @@ module.exports = {
       content: {
         type: Sequelize.STRING(1234),
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-      },
       createdAt: {
         allowNull: false,
         type: "TIMESTAMP",

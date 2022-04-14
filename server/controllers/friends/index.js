@@ -138,6 +138,7 @@ module.exports = {
   },
 
   cancle: (req, res) => {
+    console.log(req.params);
     const userInfo = isAuthorized(req);
     if (!userInfo)
       return res.status(400).json({

@@ -1,17 +1,17 @@
 const { user: userModel } = require("../../models");
 const { post: postModel } = require("../../models");
 const { friend: friendModel } = require("../../models");
-
+const crypto = require("crypto");
 const { Op } = require("sequelize");
 const { generateAccessToken, isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
   login: async (req, res) => {
-    const { userId, userPassword } = req.body;
+    const { userId, userPassword: inputPassword } = req.body;
 
     try {
       const userInfo = await userModel.findOne({
-        where: { userId, userPassword },
+        where: { userId },
       });
 
       if (!userInfo) {
@@ -19,6 +19,16 @@ module.exports = {
           .status(401)
           .json({ data: null, message: "해당하는 회원이 존재하지 않습니다" });
       }
+
+      const { userPassword: dbPassword, salt } = userInfo;
+      console.log("dbPassword: ", dbPassword, "salt: ", salt);
+      const hashPassword = crypto
+        .createHash("sha512")
+        .update(inputPassword + salt)
+        .digest("hex");
+
+      if (dbPassword !== hashPassword)
+        return res.status(400).json({ data: null, message: "Wrong password" });
 
       delete userInfo.dataValues.userPassword;
       const accessToken = generateAccessToken(userInfo.dataValues);
@@ -36,26 +46,37 @@ module.exports = {
   },
 
   signup: async (req, res) => {
-    const { userId, userPassword, userNickName, nowGoal } = req.body;
+    const {
+      userId,
+      userPassword: inputPassword,
+      userNickName,
+      nowGoal,
+    } = req.body;
 
-    if (!userId || !userPassword || !userNickName)
+    if (!userId || !inputPassword || !userNickName)
       return res.status(400).json({
         data: null,
         message: "필수 입력란을 모두 입력해주세요.",
       });
 
+    const salt = Math.round(new Date().valueOf() * Math.random()) + "";
+    const hashPassword = crypto
+      .createHash("sha512")
+      .update(inputPassword + salt)
+      .digest("hex");
+
     try {
       const registered = await userModel.create({
         userId,
-        userPassword,
+        userPassword: hashPassword,
         userNickName,
         nowGoal,
+        salt,
       });
 
       if (!registered) {
         return res.status(500).json({ data: null, message: "fail" });
       }
-
       res.status(201).json({ data: null, message: "ok" });
     } catch (err) {
       console.log(err);

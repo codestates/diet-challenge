@@ -20,12 +20,12 @@ module.exports = {
       nowGoal: {
         type: Sequelize.STRING,
       },
-      latestPostId: {
-        type: Sequelize.INTEGER,
-      },
       authorization: {
         type: Sequelize.BOOLEAN,
         defaultValue: false, //기본값 설정
+      },
+      salt: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
