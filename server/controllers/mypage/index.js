@@ -1,5 +1,6 @@
 const { user: userModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
+const crypto = require("crypto");
 
 module.exports = {
   pwdChange: (req, res) => {
