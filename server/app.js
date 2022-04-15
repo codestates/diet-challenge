@@ -9,11 +9,14 @@ const userRouter = require("./routes/users");
 const friendRouter = require("./routes/friends");
 const postRouter = require("./routes/posts");
 const mypageRouter = require("./routes/mypage");
+require("dotenv").config();
 
 const app = express();
 
 const corsOptions = {
-  origin: true, //["https://localhost:3000"],
+  origin: [
+    "http://codestate-project1-diet.s3-website.ap-northeast-2.amazonaws.com",
+  ],
   credentials: true,
   methods: ["GET", "POST", "OPTIONS", "DELETE", "PATCH"],
 };
