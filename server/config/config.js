@@ -4,7 +4,7 @@ module.exports = {
   development: {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
+    database: diet_challenge,
     host: process.env.DATABASE_HOST,
     port: process.env.DB_PORT,
     dialect: "mysql",
