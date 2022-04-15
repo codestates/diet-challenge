@@ -1,23 +1,34 @@
 const { user: userModel } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
+const crypto = require("crypto");
 
 module.exports = {
   pwdChange: (req, res) => {
     const userInfo = isAuthorized(req);
+
     if (!userInfo) {
       return res
         .status(400)
         .json({ data: null, message: "invalid access token" });
     }
 
-    const { userpassword } = req.body;
-    if (!userpassword)
+    const { userpassword: inputPassword } = req.body;
+    if (!inputPassword)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
 
+    const salt = Math.round(new Date().valueOf() * Math.random()) + "";
+    const hashPassword = crypto
+      .createHash("sha512")
+      .update(inputPassword + salt)
+      .digest("hex");
+    console.log("hashPassword: ", hashPassword);
     userModel
-      .update({ userPassword: userpassword }, { where: { id: userInfo.id } })
+      .update(
+        { userPassword: hashPassword, salt },
+        { where: { id: userInfo.id } }
+      )
       .then(([result]) => {
         if (!result)
           return res

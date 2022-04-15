@@ -12,19 +12,6 @@ function MyPosts() {
 
   useEffect(() => {
     axios
-<<<<<<< HEAD
-      .get(
-        `http://localhost:4000/posts?offset=${offset}&limit=6`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          "Content-Type": "application/json",
-          withCredentials: true,
-        }
-      )
-=======
       .get(`${process.env.REACT_APP_API_URL}/posts?offset=${offset}&limit=6`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -32,7 +19,6 @@ function MyPosts() {
         "Content-Type": "application/json",
         withCredentials: true,
       })
->>>>>>> 3f7666ca2f8cc6114601c7914816395c97e4ecd1
       .then((data) => {
         setposts(data.data.data.posts);
         sethasnext(data.data.data.hasNext);
