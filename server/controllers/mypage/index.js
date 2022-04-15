@@ -10,14 +10,23 @@ module.exports = {
         .json({ data: null, message: "invalid access token" });
     }
 
-    const { userpassword } = req.body;
+    const { userpassword: inputPassword } = req.body;
     if (!userpassword)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
 
+    const salt = Math.round(new Date().valueOf() * Math.random()) + "";
+    const hashPassword = crypto
+      .createHash("sha512")
+      .update(inputPassword + salt)
+      .digest("hex");
+
     userModel
-      .update({ userPassword: userpassword }, { where: { id: userInfo.id } })
+      .update(
+        { userPassword: hashPassword, salt },
+        { where: { id: userInfo.id } }
+      )
       .then(([result]) => {
         if (!result)
           return res
