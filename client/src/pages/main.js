@@ -37,7 +37,7 @@ function Main() {
       setalertmessage("아이디와 비밀번호를 입력해주세요.");
       openModal();
     } else {
-      axios //${process.env.REACT_APP_API_URL}
+      axios
         .post(`${process.env.REACT_APP_API_URL}/users/login`, userinfo, {
           "Content-Type": "application/json",
           withCredentials: true,
@@ -99,7 +99,7 @@ function Main() {
               <div id="top-banner" className="banner">
                 <div className="banner-inner-wrap">
                   <h2 className="main-header">
-                    <h1 className="main-header1">Diet challenge</h1>
+                    <h1 className="main-header3">Diet challenge</h1>
                     다이어트 n년차! 이번엔 성공하자 친구와 함께 기록을 공유하며
                     함께 성공해요
                   </h2>

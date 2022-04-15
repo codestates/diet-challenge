@@ -8,12 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-      },
-      fUser_id: {
-        type: Sequelize.INTEGER,
-      },
       request: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
