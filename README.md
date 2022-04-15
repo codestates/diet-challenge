@@ -47,3 +47,50 @@ Git notion
 
 
 ***
+
+
+# TEAM
+
+<details>
+<summary>전하헌</summary>
+<div markdown="1">       
+
+Position: Front-End
+
+Userid: haheon
+
+</div>
+</details>
+
+<details>
+<summary>백현민</summary>
+<div markdown="1">       
+
+Position: Front-End
+
+Userid: kaisiok
+
+</div>
+</details>
+
+<details>
+<summary>최윤선</summary>
+<div markdown="1">       
+
+Positon: Back-End
+
+Userid: dbstjs95
+
+</div>
+</details>
+
+<details>
+<summary>조준오(팀장)</summary>
+<div markdown="1">       
+
+Position: Back-End
+
+Userid: 36chojuno
+
+</div>
+</details>
