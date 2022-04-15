@@ -12,6 +12,7 @@ module.exports = {
       });
 
     const { offset, limit } = req.query;
+
     if (!offset || !limit)
       return res
         .status(400)
@@ -29,12 +30,13 @@ module.exports = {
       }),
     ])
       .then(([list, total]) => {
-        if (list.length === 0)
-          return res.status(200).json({ data: null, message: "내용 없음." });
+        const hasNext =
+          total - (Number(offset) + Number(limit)) > 0 ? true : false;
+
         res.status(200).json({
           data: {
             posts: list,
-            hasNext: total - (offset + limit) > 0 ? true : false,
+            hasNext,
           },
           message: "ok",
         });

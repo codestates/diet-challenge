@@ -1,7 +1,5 @@
 .DS_Store
-<<<<<<< HEAD
 *.pem
 .env
-=======
 /.vscode
->>>>>>> mainpage
+test.example
