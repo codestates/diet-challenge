@@ -5,6 +5,7 @@ const crypto = require("crypto");
 module.exports = {
   pwdChange: (req, res) => {
     const userInfo = isAuthorized(req);
+
     if (!userInfo) {
       return res
         .status(400)
@@ -12,7 +13,7 @@ module.exports = {
     }
 
     const { userpassword: inputPassword } = req.body;
-    if (!userpassword)
+    if (!inputPassword)
       return res
         .status(400)
         .json({ data: null, message: "잘못된 요청입니다." });
@@ -22,7 +23,7 @@ module.exports = {
       .createHash("sha512")
       .update(inputPassword + salt)
       .digest("hex");
-
+    console.log("hashPassword: ", hashPassword);
     userModel
       .update(
         { userPassword: hashPassword, salt },
