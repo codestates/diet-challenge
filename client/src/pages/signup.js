@@ -133,7 +133,7 @@ function Signup() {
 
       <div className="wrap">
         <div className="form-wrap">
-          <div className="bottom-wrap">
+     
             <h1 className="member">회원가입</h1>
             <h3 className="member1">모든 항목은 *필수입니다</h3>
             <form className="singupbox" onSubmit={(e) => e.preventDefault()}>
@@ -208,7 +208,7 @@ function Signup() {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 export default Signup;
