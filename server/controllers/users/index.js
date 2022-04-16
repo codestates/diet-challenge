@@ -21,7 +21,6 @@ module.exports = {
       }
 
       const { userPassword: dbPassword, salt } = userInfo;
-      console.log("dbPassword: ", dbPassword, "salt: ", salt);
       const hashPassword = crypto
         .createHash("sha512")
         .update(inputPassword + salt)
