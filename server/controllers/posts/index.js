@@ -105,26 +105,19 @@ module.exports = {
             .status(500)
             .json({ data: null, message: "create post fail" });
 
-        latestPostTemp = created.id;
+        latestPostTemp = created;
         return userModel.update(
           { latestPostId: created.id },
           { where: { id: userInfo.id } }
         );
       })
-      .then(async (result) => {
+      .then((result) => {
         if (!result)
           return res
             .status(500)
             .json({ data: null, message: "lastestPostId update fail" });
 
-        const latestPost = await postModel.findOne({
-          where: { id: latestPostTemp },
-        });
-        if (!latestPost)
-          return res
-            .status(203)
-            .json({ data: null, message: "저장은 됐으나, 불러오기 실패" });
-        res.status(201).json({ data: latestPost, message: "ok" });
+        res.status(201).json({ data: latestPostTemp, message: "ok" });
       })
       .catch((err) =>
         res.status(500).json({ data: err, message: "server error" })
